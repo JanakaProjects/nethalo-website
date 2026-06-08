@@ -1,0 +1,13 @@
+.animate-hero {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hero-delay-1 { animation-delay: 0.1s; }
+.animate-hero-delay-2 { animation-delay: 0.2s; }
+.animate-hero-delay-3 { animation-delay: 0.3s; }

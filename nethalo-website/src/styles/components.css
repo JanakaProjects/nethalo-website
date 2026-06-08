@@ -1,0 +1,69 @@
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: var(--font-semibold);
+  color: white;
+  background: var(--color-brand-blue);
+  border-radius: var(--radius-full);
+  transition: all 200ms ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  min-height: 44px;
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-blue-hover);
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.card-bordered {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  transition: all 200ms ease;
+}
+
+.card-bordered:hover {
+  border-color: var(--color-text-muted);
+}
+
+.section-padding {
+  padding-top: var(--space-32);
+  padding-bottom: var(--space-32);
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
+  .admin-table-header { display: none !important; }
+  .admin-student-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4px 12px !important;
+    border: 1px solid #e8e8ed !important;
+    border-radius: 8px !important;
+    margin-bottom: 8px !important;
+    padding: 12px !important;
+    background: #fafafa !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .nav-links-desktop { display: flex !important; }
+  .nav-actions-desktop { display: flex !important; }
+  .hamburger-btn { display: none !important; }
+  .sidebar-desktop { display: block !important; }
+  .mobile-topbar { display: none !important; }
+  .main-content { margin-left: 240px !important; }
+}

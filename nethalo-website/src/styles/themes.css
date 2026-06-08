@@ -1,0 +1,52 @@
+/* Light Theme (default) */
+:root {
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5f5f5;
+  --color-bg-elevated: #ffffff;
+
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a4a6a;
+  --color-text-muted: #8a8aa0;
+  --color-text-inverse: #ffffff;
+
+  --color-brand-pink: #ec4899;
+  --color-brand-pink-light: #fce7f3;
+  --color-brand-pink-dark: #be185d;
+  --color-brand-shield: #0ea5e9;
+  --color-brand-shield-light: #e0f2fe;
+  --color-brand-shield-dark: #0284c7;
+  --color-brand-accent: #8b5cf6;
+  --color-brand-yellow: #f59e0b;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  --color-border-light: #e5e5e5;
+  --color-border-medium: #d4d4d4;
+  --color-border-focus: #ec4899;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --color-bg-primary: #0f0f1a;
+  --color-bg-secondary: #1a1a2e;
+  --color-bg-tertiary: #252542;
+  --color-bg-elevated: #1e1e36;
+
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #c4c4d6;
+  --color-text-muted: #8a8aa0;
+  --color-text-inverse: #1a1a2e;
+
+  --color-brand-pink-light: #4a1a3a;
+  --color-brand-shield-light: #1a2a4a;
+  --color-border-light: #2d2d4a;
+  --color-border-medium: #3d3d5a;
+
+  --shadow-glow: 0 0 30px rgba(236, 72, 153, 0.35);
+  --shadow-glow-blue: 0 0 30px rgba(14, 165, 233, 0.35);
+  --shadow-glow-yellow: 0 0 30px rgba(245, 158, 11, 0.35);
+}
