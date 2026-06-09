@@ -29,7 +29,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     setOpenIds(prev => {
       const next = new Set(prev);
       if (allowMultiple) {
-        next.has(id) ? next.delete(id) : next.add(id);
+        if (next.has(id)) next.delete(id); else next.add(id);
       } else {
         next.clear();
         if (!prev.has(id)) next.add(id);

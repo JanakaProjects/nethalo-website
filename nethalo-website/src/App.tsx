@@ -12,6 +12,8 @@ import StudentDashboard from './pages/dashboard/StudentDashboard';
 import ParentDashboard from './pages/dashboard/ParentDashboard';
 import AdminDashboard from './pages/dashboard/AdminDashboard';
 import { Connect } from './pages/Connect';
+import { Journal } from './pages/Journal';
+import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
 import { NotFound } from './pages/NotFound';
 import { PrivateRoute } from './components/auth/Guards';
@@ -58,6 +60,8 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/dashboard/student" element={<PrivateRoute><PageWrapper><StudentDashboard /></PageWrapper></PrivateRoute>} />
         <Route path="/dashboard/parent" element={<PrivateRoute><PageWrapper><ParentDashboard /></PageWrapper></PrivateRoute>} />
         <Route path="/dashboard/admin" element={<PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute>} />
+        <Route path="/journal" element={<PrivateRoute><PageWrapper><Journal /></PageWrapper></PrivateRoute>} />
+        <Route path="/reports" element={<PrivateRoute><PageWrapper><Reports /></PageWrapper></PrivateRoute>} />
         <Route path="/connect" element={<PrivateRoute><PageWrapper><Connect /></PageWrapper></PrivateRoute>} />
         <Route path="/settings" element={<PrivateRoute><PageWrapper><Settings /></PageWrapper></PrivateRoute>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />

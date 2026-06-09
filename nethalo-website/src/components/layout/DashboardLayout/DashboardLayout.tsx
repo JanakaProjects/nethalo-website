@@ -3,10 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../lib/auth';
 import { useIsMobile } from '../../../lib/useIsMobile';
 import { useAppTheme } from '../../../lib/theme';
-import { LayoutDashboard, Link2, Settings, HelpCircle, LogOut, Menu, Shield, X, Sun, Moon } from 'lucide-react';
+import { LayoutDashboard, Link2, Settings, HelpCircle, LogOut, Menu, Shield, X, Sun, Moon, BookOpen, FileText } from 'lucide-react';
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
+  { icon: BookOpen, label: 'Journal', href: '/journal' },
+  { icon: FileText, label: 'Reports', href: '/reports' },
   { icon: Link2, label: 'Connect', href: '/connect' },
   { icon: Settings, label: 'Settings', href: '/settings' },
   { icon: HelpCircle, label: 'Help', href: '#' },

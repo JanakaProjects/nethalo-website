@@ -1,35 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DashboardLayout } from '../components/layout/DashboardLayout/DashboardLayout';
 import { useIsMobile } from '../lib/useIsMobile';
-import { Camera, Music2, Ghost, MessageCircle, Headphones, Check, Plus } from 'lucide-react';
-import type { ConnectedAccount } from '../lib/mockData';
-import { socialPlatforms } from '../lib/mockData';
+import { useAuth } from '../lib/auth';
+import { Camera, Music2, Ghost, MessageCircle, Headphones, Check, Plus, Loader2, AlertCircle } from 'lucide-react';
+import type { ConnectedAccount } from '../lib/api';
+import { getAccounts, connectAccount, disconnectAccount } from '../lib/api';
 
 const platformIcons: Record<string, React.FC<{ size?: number; style?: React.CSSProperties }>> = {
   instagram: Camera, tiktok: Music2, snapchat: Ghost, twitter: MessageCircle, whatsapp: MessageCircle, discord: Headphones,
 };
 
+const DEFAULT_ACCOUNTS: ConnectedAccount[] = [
+  { platform: 'instagram', label: 'Instagram', connected: false },
+  { platform: 'tiktok', label: 'TikTok', connected: false },
+  { platform: 'snapchat', label: 'Snapchat', connected: false },
+  { platform: 'twitter', label: 'X (Twitter)', connected: false },
+  { platform: 'whatsapp', label: 'WhatsApp', connected: false },
+  { platform: 'discord', label: 'Discord', connected: false },
+];
+
 export const Connect: React.FC = () => {
   const isMobile = useIsMobile(768);
-  const [accounts, setAccounts] = useState<ConnectedAccount[]>(() => {
-    const stored = localStorage.getItem('nethalo_connections');
-    if (stored) {
-      try { return JSON.parse(stored); } catch { }
-    }
-    return socialPlatforms;
-  });
+  useAuth();
+  const [accounts, setAccounts] = useState<ConnectedAccount[]>(DEFAULT_ACCOUNTS);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [pendingPlatform, setPendingPlatform] = useState<string | null>(null);
 
-  const toggleConnection = (platform: string) => {
-    const updated = accounts.map(a => {
-      if (a.platform !== platform) return a;
-      if (a.connected) return { ...a, connected: false, username: undefined, connectedAt: undefined };
-      return { ...a, connected: true, username: `@user_${platform}`, connectedAt: new Date().toISOString().split('T')[0] };
-    });
-    setAccounts(updated);
-    localStorage.setItem('nethalo_connections', JSON.stringify(updated));
+  useEffect(() => {
+    const loadAccounts = async () => {
+      try {
+        const data = await getAccounts();
+        const merged = DEFAULT_ACCOUNTS.map(def => {
+          const saved = data.accounts.find(a => a.platform === def.platform);
+          return saved ? { ...def, ...saved } : def;
+        });
+        setAccounts(merged);
+      } catch (e) {
+        setError('Failed to load connected accounts');
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadAccounts();
+  }, []);
+
+  const handleToggle = async (platform: string) => {
+    const acc = accounts.find(a => a.platform === platform);
+    if (!acc) return;
+
+    setPendingPlatform(platform);
+    setError(null);
+    try {
+      if (acc.connected) {
+        await disconnectAccount(platform);
+      } else {
+        await connectAccount(platform, acc.label);
+      }
+      const data = await getAccounts();
+      const merged = DEFAULT_ACCOUNTS.map(def => {
+        const saved = data.accounts.find(a => a.platform === def.platform);
+        return saved ? { ...def, ...saved } : def;
+      });
+      setAccounts(merged);
+    } catch (e) {
+      setError('Failed to update connection');
+    } finally {
+      setPendingPlatform(null);
+    }
   };
 
   const connectedCount = accounts.filter(a => a.connected).length;
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
+          <Loader2 size={32} className="animate-spin" style={{ color: '#0071e3' }} />
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
@@ -38,15 +89,23 @@ export const Connect: React.FC = () => {
         {connectedCount} of {accounts.length} platforms connected
       </p>
 
+      {error && (
+        <div style={{ padding: 12, borderRadius: 12, background: '#fff0ee', color: '#ff3b30', fontSize: 14, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <AlertCircle size={16} />
+          {error}
+        </div>
+      )}
+
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))', gap: isMobile ? 12 : 16 }}>
         {accounts.map(acc => {
           const Icon = platformIcons[acc.platform] || MessageCircle;
+          const isPending = pendingPlatform === acc.platform;
           return (
             <div key={acc.platform}
               style={{
                 background: '#ffffff', border: `1px solid ${acc.connected ? '#30d158' : '#d2d2d7'}`,
                 borderRadius: 12, padding: isMobile ? 16 : 24, display: 'flex', flexDirection: 'column',
-                transition: 'all 0.2s',
+                transition: 'all 0.2s', opacity: isPending ? 0.7 : 1,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
@@ -64,23 +123,23 @@ export const Connect: React.FC = () => {
 
               <div style={{ fontSize: isMobile ? 13 : 13, color: '#6e6e73', marginBottom: 16, flex: 1 }}>
                 {acc.connected
-                  ? `Connected since ${acc.connectedAt}. NETHALO is monitoring this platform for threats.`
+                  ? `Connected since ${acc.connected_at || 'recently'}. NETHALO is monitoring this platform for threats.`
                   : `Connect your ${acc.label} account to enable real-time threat detection.`}
               </div>
 
-              <button onClick={() => toggleConnection(acc.platform)}
+              <button onClick={() => handleToggle(acc.platform)} disabled={isPending}
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                   width: '100%', height: 44, borderRadius: 9999, fontSize: 14, fontWeight: 600,
-                  cursor: 'pointer', transition: 'all 0.2s', border: 'none',
+                  cursor: isPending ? 'not-allowed' : 'pointer', transition: 'all 0.2s', border: 'none',
                   background: acc.connected ? '#f5f5f7' : '#0071e3',
                   color: acc.connected ? '#1d1d1f' : 'white',
-                  minHeight: 44,
+                  minHeight: 44, opacity: isPending ? 0.6 : 1,
                 }}
-                onMouseEnter={e => { if (!acc.connected) e.currentTarget.style.background = '#0077ed'; }}
-                onMouseLeave={e => { if (!acc.connected) e.currentTarget.style.background = '#0071e3'; }}
+                onMouseEnter={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = '#0077ed'; }}
+                onMouseLeave={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = '#0071e3'; }}
               >
-                {acc.connected ? <><Check size={16} /> Connected</> : <><Plus size={16} /> Connect {acc.label}</>}
+                {isPending ? <Loader2 size={16} className="animate-spin" /> : acc.connected ? <><Check size={16} /> Connected</> : <><Plus size={16} /> Connect {acc.label}</>}
               </button>
             </div>
           );

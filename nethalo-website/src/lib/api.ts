@@ -62,9 +62,31 @@ export interface Report {
   created_at: string;
 }
 
+export interface JournalEntry {
+  id: number | string;
+  user_id: string;
+  content: string;
+  mood?: string;
+  created_at: string;
+}
+
+interface WeeklyTrendItem {
+  day: string;
+  threats: number;
+}
+
+interface RecentActivityItem {
+  id: number | string;
+  type: string;
+  platform: string;
+  message: string;
+  severity?: string;
+  time: string;
+}
+
 // Dashboard
 export function getDashboardStats() {
-  return apiFetch<{ stats: DashboardStats; weeklyTrend: any[]; recentActivity: any[] }>('/dashboard/stats');
+  return apiFetch<{ stats: DashboardStats; weeklyTrend: WeeklyTrendItem[]; recentActivity: RecentActivityItem[] }>('/dashboard/stats');
 }
 
 // Threats
@@ -114,5 +136,23 @@ export function createReport(type: string, description?: string, target_name?: s
   return apiFetch<{ id: string }>('/reports', {
     method: 'POST',
     body: JSON.stringify({ type, description, target_name }),
+  });
+}
+
+// Journal
+export function getJournalEntries() {
+  return apiFetch<{ entries: JournalEntry[] }>('/journal');
+}
+
+export function createJournalEntry(content: string, mood?: string) {
+  return apiFetch<{ id: number }>('/journal', {
+    method: 'POST',
+    body: JSON.stringify({ content, mood }),
+  });
+}
+
+export function deleteJournalEntry(id: string) {
+  return apiFetch<{ success: boolean }>(`/journal/${id}`, {
+    method: 'DELETE',
   });
 }

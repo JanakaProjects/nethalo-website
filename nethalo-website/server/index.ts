@@ -10,6 +10,7 @@ import childRoutes from './routes/children.js';
 import dashboardRoutes from './routes/dashboard.js';
 import reportRoutes from './routes/reports.js';
 import accountRoutes from './routes/accounts.js';
+import journalRoutes from './routes/journal.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,6 +35,7 @@ app.use('/api/children', authMiddleware, childRoutes);
 app.use('/api/dashboard', authMiddleware, dashboardRoutes);
 app.use('/api/reports', authMiddleware, reportRoutes);
 app.use('/api/accounts', authMiddleware, accountRoutes);
+app.use('/api/journal', authMiddleware, journalRoutes);
 
 // Fallback to index.html for SPA routing
 app.use((_req, res) => {
