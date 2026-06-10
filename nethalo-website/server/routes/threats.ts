@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getDb } from '../db.js';
+import { sendThreatAlert } from '../services/email.js';
+import { emitThreatAlert } from '../index.js';
 
 const router = Router();
 
@@ -53,6 +55,13 @@ router.post('/', (req: Request, res: Response) => {
   const result = db.prepare(
     'INSERT INTO threats (user_id, platform, type, severity, message) VALUES (?, ?, ?, ?, ?)'
   ).run(req.user.userId, platform, type, severity, message);
+  
+  const threat = { id: result.lastInsertRowid, platform, type, severity, message };
+  emitThreatAlert(req.user!.userId, threat);
+  if (severity === 'critical') {
+    sendThreatAlert(req.user!.email, req.user!.name, threat).catch(() => {});
+  }
+  
   res.status(201).json({ id: result.lastInsertRowid });
 });
 

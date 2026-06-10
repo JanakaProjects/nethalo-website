@@ -7,7 +7,7 @@ import StatCard from '../../components/ui/StatCard/StatCard';
 import { useIsMobile } from '../../lib/useIsMobile';
 import { useAuth } from '../../lib/auth';
 import { useParentData } from '../../lib/useDashboardData';
-import { Shield, Activity, AlertTriangle, Eye } from 'lucide-react';
+import { Shield, Activity, AlertTriangle, Eye, Download } from 'lucide-react';
 
 const getStatusStyle = (status: string) => {
   switch (status) {
@@ -56,8 +56,15 @@ const ParentDashboard: React.FC = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 12 : 24, marginBottom: isMobile ? 24 : 32 }}>
         <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px 24px 20px', border: '1px solid #e8e8ed' }}>
-          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Flagged Interactions</h3>
-          <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: '0 0 16px 0' }}>Threats detected this week</p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+            <div>
+              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Flagged Interactions</h3>
+              <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: 0 }}>Threats detected this week</p>
+            </div>
+            <a href="/api/export/threats" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
+              <Download size={14} /> Export
+            </a>
+          </div>
           {barData.length > 0 ? (
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: isMobile ? 6 : 8, height: isMobile ? 100 : 140 }}>
               {barData.map((bar, i) => {

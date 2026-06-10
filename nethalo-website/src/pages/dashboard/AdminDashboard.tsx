@@ -8,7 +8,7 @@ import { useIsMobile } from '../../lib/useIsMobile';
 import { useAdminData } from '../../lib/useDashboardData';
 import type { Report } from '../../lib/api';
 import {
-  Shield, Users, TrendingUp, AlertTriangle, FileText, Clock,
+  Shield, Users, TrendingUp, AlertTriangle, FileText, Clock, Download,
 } from 'lucide-react';
 
 const priorityMeta = (type: string) => {
@@ -75,10 +75,15 @@ const AdminDashboard: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 12 : 24, marginBottom: isMobile ? 24 : 32 }}>
         {/* Reports This Week */}
         <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px 24px 20px', border: '1px solid #e8e8ed' }}>
-          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Reports This Week</h3>
-          <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: '0 0 16px 0' }}>
-            Total: {stats?.totalThreats ?? 0} threats recorded
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+            <div>
+              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Reports This Week</h3>
+              <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: 0 }}>Total: {stats?.totalThreats ?? 0} threats recorded</p>
+            </div>
+            <a href="/api/export/threats" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
+              <Download size={14} /> Export
+            </a>
+          </div>
           {isLoading ? (
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: isMobile ? 6 : 8, height: isMobile ? 100 : 140 }}>
               {Array.from({ length: 7 }).map((_, i) => (
@@ -170,7 +175,12 @@ const AdminDashboard: React.FC = () => {
 
       {/* Recent Actions */}
       <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed' }}>
-        <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 12px 0' }}>Recent Reports</h3>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: 0 }}>Recent Reports</h3>
+          <a href="/api/export/reports" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
+            <Download size={14} /> Export
+          </a>
+        </div>
         {isLoading ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 12 }}>
             {Array.from({ length: 3 }).map((_, i) => (
