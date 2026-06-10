@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
       style={{
         minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         padding: isMobile ? '80px 16px 40px' : '120px 24px 60px', textAlign: 'center', overflow: 'hidden', position: 'relative',
-        background: 'linear-gradient(180deg, #ffffff 0%, #f5f7ff 50%, #f0f4ff 100%)',
+        background: 'linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 50%, var(--color-bg-secondary) 100%)',
       }}
     >
       {/* Animated gradient mesh */}
@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
           animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
           transition={{ duration: shape.duration, delay: shape.delay, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0071e3" strokeWidth="1.5" width={shape.size} height={shape.size}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-shield)" strokeWidth="1.5" width={shape.size} height={shape.size}>
             {shape.icon === 'shield' ? (
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             ) : (
@@ -114,7 +114,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 400, lineHeight: 1.5,
-            color: '#6e6e73', maxWidth: 640, marginBottom: 32,
+            color: 'var(--color-text-muted)', maxWidth: 640, marginBottom: 32,
           }}
         >
           {hero.subhead}
@@ -128,12 +128,12 @@ export const Hero: React.FC = () => {
           <button onClick={() => navigate('/signup')}
             style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-              padding: '12px 28px', fontSize: 15, fontWeight: 600, color: 'white',
-              background: '#0071e3', borderRadius: 9999, border: 'none', cursor: 'pointer',
+              padding: '12px 28px', fontSize: 15, fontWeight: 600, color: 'var(--color-text-inverse)',
+              background: 'var(--color-brand-shield)', borderRadius: 9999, border: 'none', cursor: 'pointer',
               transition: 'all 0.2s', minWidth: 180, minHeight: 44,
             }}
-            onMouseEnter={e => e.currentTarget.style.background = '#0077ed'}
-            onMouseLeave={e => e.currentTarget.style.background = '#0071e3'}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-shield-dark)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'}
           >
             Get Started Free
           </button>

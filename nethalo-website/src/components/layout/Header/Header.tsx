@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                 onClick={() => { navigate('/signup'); setMobileOpen(false); }}
                 style={{
                   padding: '7px 16px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                  color: '#ffffff', background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer',
+                  color: 'var(--color-text-inverse)', background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer',
                   transition: 'opacity 0.2s', minHeight: 44,
                 }}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
@@ -166,7 +166,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                   onClick={() => handleNavClick('/signup')}
                   style={{
                     width: '100%', padding: '14px', borderRadius: 9999,
-                    fontSize: 16, fontWeight: 600, color: '#ffffff',
+                    fontSize: 16, fontWeight: 600, color: 'var(--color-text-inverse)',
                     background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer',
                     minHeight: 44,
                   }}

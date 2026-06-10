@@ -34,7 +34,7 @@ const StatCard: React.FC<{ value: string; label: string; index: number }> = ({ v
           <CountUp end={endValue} suffix={isPercent ? '%' : ''} duration={2} delay={index * 0.15} />
         )}
       </div>
-      <div style={{ fontSize: 14, color: '#6e6e73', lineHeight: 1.4 }}>{label}</div>
+      <div style={{ fontSize: 14, color: 'var(--color-text-muted)', lineHeight: 1.4 }}>{label}</div>
       <ProgressBar inViewDelay={index * 0.15 + 0.5} />
     </div>
   );
@@ -45,12 +45,12 @@ const ProgressBar: React.FC<{ inViewDelay: number }> = ({ inViewDelay }) => {
   const inView = useInView(ref, { once: true, margin: '-40px' });
 
   return (
-    <div ref={ref} style={{ width: '60%', height: 3, background: '#e8e8ed', borderRadius: 2, margin: '12px auto 0', overflow: 'hidden' }}>
+    <div ref={ref} style={{ width: '60%', height: 3, background: 'var(--color-border-light)', borderRadius: 2, margin: '12px auto 0', overflow: 'hidden' }}>
       <motion.div
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
         transition={{ duration: 1.2, delay: inViewDelay, ease: [0.16, 1, 0.3, 1] }}
-        style={{ height: '100%', background: 'linear-gradient(90deg, #0071e3, #8b5cf6)', borderRadius: 2, transformOrigin: 'left' }}
+        style={{ height: '100%', background: 'linear-gradient(90deg, var(--color-brand-shield), var(--color-brand-accent))', borderRadius: 2, transformOrigin: 'left' }}
       />
     </div>
   );
@@ -59,11 +59,11 @@ const ProgressBar: React.FC<{ inViewDelay: number }> = ({ inViewDelay }) => {
 export const Problem: React.FC = () => {
   const isMobile = useIsMobile();
   return (
-    <section style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#f5f5f7' }}>
+      <section style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-secondary)' }}>
       <Container>
         <FadeInUp>
           <p style={{
-            fontSize: 14, fontWeight: 600, color: '#6e6e73',
+            fontSize: 14, fontWeight: 600, color: 'var(--color-text-muted)',
             textAlign: 'center', letterSpacing: '0.04em', textTransform: 'uppercase',
             marginBottom: 12,
           }}>

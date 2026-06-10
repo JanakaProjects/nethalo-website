@@ -24,7 +24,7 @@ export const CTAFooter: React.FC = () => {
 
   return (
     <>
-      <section style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#f5f5f7', textAlign: 'center' }}>
+      <section style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-secondary)', textAlign: 'center' }}>
         <Container>
           <FadeInUp>
             <h2 className="section-heading" style={{ marginBottom: 16 }}>
@@ -40,7 +40,7 @@ export const CTAFooter: React.FC = () => {
         </Container>
       </section>
 
-      <footer style={{ padding: '40px 0', background: '#f5f5f7', borderTop: '1px solid #d2d2d7' }}>
+      <footer style={{ padding: '40px 0', background: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border-medium)' }}>
         <Container>
           <div style={{
             display: 'flex', flexDirection: 'row',
@@ -57,7 +57,7 @@ export const CTAFooter: React.FC = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  style={{ fontSize: 12, color: '#6e6e73', textDecoration: 'none', cursor: 'pointer' }}
+                  style={{ fontSize: 12, color: 'var(--color-text-muted)', textDecoration: 'none', cursor: 'pointer' }}
                   onClick={(e) => { if (link.href.startsWith('#')) { e.preventDefault(); const el = document.querySelector(link.href); el?.scrollIntoView({ behavior: 'smooth' }); } }}
                 >
                   {link.label}
@@ -66,7 +66,7 @@ export const CTAFooter: React.FC = () => {
               <button
                 onClick={scrollToTop}
                 style={{
-                  fontSize: 12, color: '#6e6e73', cursor: 'pointer',
+                  fontSize: 12, color: 'var(--color-text-muted)', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', gap: 4,
                   minHeight: 44, background: 'none', border: 'none',
                 }}
@@ -80,7 +80,7 @@ export const CTAFooter: React.FC = () => {
 
           <div style={{
             marginTop: 24, paddingTop: 16,
-            borderTop: '1px solid #e8e8ed',
+            borderTop: '1px solid var(--color-border-light)',
             fontSize: 12, color: 'var(--color-text-secondary)',
             display: 'flex', justifyContent: 'center',
           }}>

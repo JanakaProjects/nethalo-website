@@ -17,7 +17,7 @@ const useIsMobile = () => {
 export const HowItHelps: React.FC = () => {
   const isMobile = useIsMobile();
   return (
-    <section id="how-it-works" style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#f5f5f7' }}>
+    <section id="how-it-works" style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-secondary)' }}>
       <Container>
         <FadeInUp>
           <h2 className="section-heading">How It Works</h2>
@@ -38,7 +38,7 @@ export const HowItHelps: React.FC = () => {
               <div style={{ textAlign: 'center' }}>
                 <div style={{
                   width: 56, height: 56, borderRadius: '50%',
-                  background: '#0071e3', color: 'white',
+                  background: 'var(--color-brand-shield)', color: 'white',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 22, fontWeight: 700, margin: '0 auto 20px',
                 }}>
@@ -47,7 +47,7 @@ export const HowItHelps: React.FC = () => {
                 <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 8 }}>
                   {step.title}
                 </h3>
-                <p style={{ fontSize: 14, color: '#6e6e73', lineHeight: 1.5 }}>
+                <p style={{ fontSize: 14, color: 'var(--color-text-muted)', lineHeight: 1.5 }}>
                   {step.body}
                 </p>
               </div>

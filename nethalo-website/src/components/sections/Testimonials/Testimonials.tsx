@@ -17,7 +17,7 @@ const useIsMobile = () => {
 export const Testimonials: React.FC = () => {
   const isMobile = useIsMobile();
   return (
-    <section id="testimonials" style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#ffffff' }}>
+    <section id="testimonials" style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-primary)' }}>
       <Container>
         <FadeInUp>
           <h2 className="section-heading">Trusted by students, parents, and schools</h2>
@@ -36,12 +36,12 @@ export const Testimonials: React.FC = () => {
           {testimonials.map((t, i) => (
             <FadeInUp key={t.name} delay={i * 0.08}>
               <div style={{
-                background: '#ffffff',
-                border: '1px solid #d2d2d7',
+                background: 'var(--color-bg-elevated)',
+                border: '1px solid var(--color-border-medium)',
                 borderRadius: 12,
                 padding: 28,
               }}>
-                <div style={{ color: '#0071e3', fontSize: 13, marginBottom: 12, letterSpacing: '0.05em' }}>
+                <div style={{ color: 'var(--color-brand-shield)', fontSize: 13, marginBottom: 12, letterSpacing: '0.05em' }}>
                   {'\u2605'.repeat(5)}
                 </div>
                 <p style={{
@@ -50,7 +50,7 @@ export const Testimonials: React.FC = () => {
                 }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div style={{ fontSize: 13, color: '#6e6e73' }}>
+                <div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>
                   <span style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>{t.name}</span>
                   {' \u2014 '}{t.role}
                 </div>

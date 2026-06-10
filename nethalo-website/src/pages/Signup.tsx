@@ -46,26 +46,26 @@ export const Signup: React.FC = () => {
 
   const inputStyle: React.CSSProperties = {
     width: '100%', height: 44, padding: '0 14px', borderRadius: 10,
-    border: '1px solid #d2d2d7', fontSize: 14, background: '#f5f5f7', color: 'var(--color-text-primary)', outline: 'none',
+    border: '1px solid var(--color-border-medium)', fontSize: 14, background: 'var(--color-bg-secondary)', color: 'var(--color-text-primary)', outline: 'none',
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: isMobile ? '100vh' : 'calc(100vh - 44px)', background: '#f5f5f7', padding: isMobile ? 16 : 24 }}>
-      <div style={{ maxWidth: 440, width: '100%', background: '#ffffff', borderRadius: 16, padding: isMobile ? 24 : 40, border: '1px solid #d2d2d7' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: isMobile ? '100vh' : 'calc(100vh - 44px)', background: 'var(--color-bg-secondary)', padding: isMobile ? 16 : 24 }}>
+      <div style={{ maxWidth: 440, width: '100%', background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? 24 : 40, border: '1px solid var(--color-border-medium)' }}>
         <div style={{ textAlign: 'center', marginBottom: isMobile ? 20 : 24 }}>
-          <Shield size={isMobile ? 32 : 40} style={{ color: '#0071e3', marginBottom: 12 }} />
+          <Shield size={isMobile ? 32 : 40} style={{ color: 'var(--color-brand-shield)', marginBottom: 12 }} />
           <h1 style={{ fontSize: isMobile ? 22 : 24, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Create your account</h1>
-          <p style={{ fontSize: isMobile ? 14 : 14, color: '#6e6e73' }}>Choose your role to get started</p>
+          <p style={{ fontSize: isMobile ? 14 : 14, color: 'var(--color-text-muted)' }}>Choose your role to get started</p>
         </div>
 
-        <div style={{ display: 'flex', gap: 4, marginBottom: isMobile ? 20 : 24, background: '#f5f5f7', borderRadius: 10, padding: 4 }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: isMobile ? 20 : 24, background: 'var(--color-bg-secondary)', borderRadius: 10, padding: 4 }}>
           {tabs.map(t => (
             <button key={t.key} onClick={() => setTab(t.key)}
               style={{
                 flex: 1, padding: isMobile ? '8px 4px' : '10px 8px', borderRadius: 8, fontSize: isMobile ? 12 : 13, fontWeight: 600,
                 border: 'none', cursor: 'pointer', transition: 'all 0.2s', minHeight: 44,
-                background: tab === t.key ? '#ffffff' : 'transparent',
-                color: tab === t.key ? 'var(--color-text-primary)' : '#6e6e73',
+                background: tab === t.key ? 'var(--color-bg-elevated)' : 'transparent',
+                color: tab === t.key ? 'var(--color-text-primary)' : 'var(--color-text-muted)',
                 boxShadow: tab === t.key ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
               }}
             >
@@ -80,19 +80,19 @@ export const Signup: React.FC = () => {
               {tab === 'student' ? 'Full Name' : tab === 'parent' ? 'Your Name' : 'Your Name'} *
             </label>
             <input value={name} onChange={e => setName(e.target.value)} placeholder={tab === 'admin' ? 'Dr. Sarah Chen' : 'Your full name'} required style={inputStyle}
-              onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+              onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
           </div>
 
           <div style={{ marginBottom: 16 }}>
             <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>Email *</label>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" required style={inputStyle}
-              onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+              onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
           </div>
 
           <div style={{ marginBottom: 16 }}>
             <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>Password *</label>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Create a password (min 8 characters)" required minLength={8} style={inputStyle}
-              onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+              onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
           </div>
 
           {tab === 'student' && (
@@ -100,12 +100,12 @@ export const Signup: React.FC = () => {
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>Age</label>
                 <input type="number" value={age} onChange={e => setAge(e.target.value)} placeholder="13-19" min={13} max={19} style={inputStyle}
-                  onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+                  onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>School Name</label>
                 <input value={school} onChange={e => setSchool(e.target.value)} placeholder="e.g. Manchester Academy" style={inputStyle}
-                  onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+                  onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
               </div>
             </>
           )}
@@ -114,7 +114,7 @@ export const Signup: React.FC = () => {
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>Child's Name (optional)</label>
               <input value={childName} onChange={e => setChildName(e.target.value)} placeholder="e.g. Maya" style={inputStyle}
-                onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+                onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
             </div>
           )}
 
@@ -123,7 +123,7 @@ export const Signup: React.FC = () => {
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>School Name *</label>
                 <input value={school} onChange={e => setSchool(e.target.value)} placeholder="e.g. Brighton College" required style={inputStyle}
-                  onFocus={e => e.target.style.borderColor = '#0071e3'} onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
+                  onFocus={e => e.target.style.borderColor = 'var(--color-brand-shield)'} onBlur={e => e.target.style.borderColor = 'var(--color-border-medium)'} />
               </div>
               <div style={{ marginBottom: 16 }}>
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }}>Role *</label>
@@ -137,19 +137,19 @@ export const Signup: React.FC = () => {
             </>
           )}
 
-          {error && <p style={{ fontSize: 13, color: '#d32f2f', marginBottom: 16 }}>{error}</p>}
+          {error && <p style={{ fontSize: 13, color: 'var(--color-error)', marginBottom: 16 }}>{error}</p>}
 
           <button type="submit" disabled={loading}
-            style={{ width: '100%', height: 44, borderRadius: 9999, fontSize: 15, fontWeight: 600, color: 'white', background: loading ? '#6e6e73' : '#0071e3', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.2s', minHeight: 44 }}
-            onMouseEnter={e => { if (!loading) e.currentTarget.style.background = '#0077ed'; }}
-            onMouseLeave={e => { if (!loading) e.currentTarget.style.background = '#0071e3'; }}>
+            style={{ width: '100%', height: 44, borderRadius: 9999, fontSize: 15, fontWeight: 600, color: 'var(--color-text-inverse)', background: loading ? 'var(--color-text-muted)' : 'var(--color-brand-shield)', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.2s', minHeight: 44 }}
+            onMouseEnter={e => { if (!loading) e.currentTarget.style.background = 'var(--color-brand-shield-dark)'; }}
+            onMouseLeave={e => { if (!loading) e.currentTarget.style.background = 'var(--color-brand-shield)'; }}>
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
-        <div style={{ textAlign: 'center', marginTop: 24, fontSize: 14, color: '#6e6e73' }}>
+        <div style={{ textAlign: 'center', marginTop: 24, fontSize: 14, color: 'var(--color-text-muted)' }}>
           <span>Already have an account? </span>
-          <Link to="/login" style={{ color: '#0071e3', textDecoration: 'none', fontWeight: 500 }}>Sign in</Link>
+          <Link to="/login" style={{ color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500 }}>Sign in</Link>
         </div>
       </div>
     </div>

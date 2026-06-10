@@ -42,11 +42,11 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ padding: isMobile ? '20px 16px' : '24px 20px', borderBottom: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <Shield size={isMobile ? 24 : 28} style={{ color: '#0071e3' }} />
+          <Shield size={isMobile ? 24 : 28} style={{ color: 'var(--color-brand-shield)' }} />
           <span style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
         </Link>
         {isMobile && (
-          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
+          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
             <X size={20} />
           </button>
         )}
@@ -62,13 +62,13 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
                 borderRadius: 10, fontSize: isMobile ? 15 : 14, fontWeight: 500, textDecoration: 'none', width: '100%',
                 transition: 'all 0.2s', border: 'none', cursor: 'pointer', textAlign: 'left',
                 background: active ? 'var(--color-brand-shield-light)' : 'transparent',
-                color: active ? '#0071e3' : 'var(--color-text-secondary)',
+                color: active ? 'var(--color-brand-shield)' : 'var(--color-text-secondary)',
                 position: 'relative', minHeight: 44,
               }}
               onMouseEnter={e => { if (!active) { e.currentTarget.style.background = 'var(--color-bg-tertiary)'; e.currentTarget.style.color = 'var(--color-text-primary)'; } }}
               onMouseLeave={e => { if (!active) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-secondary)'; } }}
             >
-              {active && <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', width: 3, height: 20, borderRadius: '0 3px 3px 0', background: '#0071e3' }} />}
+              {active && <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', width: 3, height: 20, borderRadius: '0 3px 3px 0', background: 'var(--color-brand-shield)' }} />}
               <Icon size={20} />
               <span>{item.label}</span>
             </button>
@@ -77,7 +77,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
       </nav>
       <div style={{ padding: isMobile ? '12px 8px' : '16px 12px', borderTop: '1px solid var(--color-border-light)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: isMobile ? '14px 12px' : '12px 14px', borderRadius: 10, marginBottom: 4 }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#0071e3', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, flexShrink: 0 }}>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, flexShrink: 0 }}>
             {user?.name?.charAt(0) || 'U'}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -87,7 +87,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
         </div>
         <button onClick={handleLogout} type="button" aria-label="Log out"
           style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '14px 12px' : '12px 14px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'var(--color-text-secondary)', border: 'none', background: 'none', cursor: 'pointer', width: '100%', transition: 'all 0.2s', minHeight: 44 }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#fff2f0'; e.currentTarget.style.color = '#d32f2f'; }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'color-mix(in srgb, var(--color-error) 15%, transparent)'; e.currentTarget.style.color = 'var(--color-error)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}>
           <LogOut size={20} />
           Log out
@@ -119,7 +119,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             <Menu size={22} />
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Shield size={22} style={{ color: '#0071e3' }} />
+            <Shield size={22} style={{ color: 'var(--color-brand-shield)' }} />
             <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>NETHALO</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -128,7 +128,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
               aria-label="Toggle theme">
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </button>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#0071e3', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>
+            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>
               {user?.name?.charAt(0) || 'U'}
             </div>
           </div>

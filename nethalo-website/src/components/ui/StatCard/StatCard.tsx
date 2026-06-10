@@ -15,18 +15,18 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ icon, label, value, trend, trendUp, color, isMobile, isLoading }) => {
   if (isLoading) {
     return (
-      <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed' }}>
-        <div style={{ width: isMobile ? 36 : 44, height: isMobile ? 36 : 44, borderRadius: 10, background: '#f0f0f0' }} />
+      <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid var(--color-border-light)' }}>
+        <div style={{ width: isMobile ? 36 : 44, height: isMobile ? 36 : 44, borderRadius: 10, background: 'var(--color-bg-tertiary)' }} />
         <div style={{ marginTop: isMobile ? 12 : 20 }}>
-          <div style={{ width: '60%', height: isMobile ? 22 : 28, borderRadius: 6, background: '#f0f0f0' }} />
-          <div style={{ width: '40%', height: 14, borderRadius: 4, background: '#f0f0f0', marginTop: 8 }} />
+          <div style={{ width: '60%', height: isMobile ? 22 : 28, borderRadius: 6, background: 'var(--color-bg-tertiary)' }} />
+          <div style={{ width: '40%', height: 14, borderRadius: 4, background: 'var(--color-bg-tertiary)', marginTop: 8 }} />
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed', transition: 'all 0.3s', cursor: 'default' }}
+    <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid var(--color-border-light)', transition: 'all 0.3s', cursor: 'default' }}
       onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'; }}
       onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>

@@ -18,8 +18,8 @@ const ExportButton: React.FC<ExportButtonProps> = ({ href, label, isMobile }) =>
         gap: 6,
         padding: isMobile ? '6px 12px' : '8px 16px',
         borderRadius: 8,
-        background: '#f0f7ff',
-        color: '#0071e3',
+        background: 'var(--color-brand-shield-light)',
+        color: 'var(--color-brand-shield)',
         fontSize: 13,
         fontWeight: 600,
         textDecoration: 'none',
@@ -27,8 +27,8 @@ const ExportButton: React.FC<ExportButtonProps> = ({ href, label, isMobile }) =>
         minHeight: 36,
         transition: 'all 0.2s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.background = '#e0efff'; }}
-      onMouseLeave={e => { e.currentTarget.style.background = '#f0f7ff'; }}
+      onMouseEnter={e => { e.currentTarget.style.background = 'color-mix(in srgb, var(--color-brand-shield) 20%, var(--color-brand-shield-light))'; }}
+      onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-brand-shield-light)'; }}
     >
       <Download size={16} />
       {label}

@@ -20,7 +20,7 @@ const icons: Record<string, React.FC<{ size?: number; style?: React.CSSPropertie
 export const Solution: React.FC = () => {
   const isMobile = useIsMobile();
   return (
-    <section id="features" style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#ffffff' }}>
+    <section id="features" style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-primary)' }}>
       <Container>
         <FadeInUp>
           <h2 className="section-heading">Meet NETHALO</h2>
@@ -43,15 +43,15 @@ export const Solution: React.FC = () => {
                 <div style={{ textAlign: 'center', padding: '24px 16px' }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 12,
-                    background: '#f5f5f7', display: 'flex', alignItems: 'center',
+                    background: 'var(--color-bg-secondary)', display: 'flex', alignItems: 'center',
                     justifyContent: 'center', margin: '0 auto 16px',
                   }}>
-                    {Icon && <Icon size={22} style={{ color: '#e91e8c' }} />}
+                    {Icon && <Icon size={22} style={{ color: 'var(--color-brand-pink)' }} />}
                   </div>
                   <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 8 }}>
                     {f.title}
                   </h3>
-                  <p style={{ fontSize: 14, color: '#6e6e73', lineHeight: 1.5, maxWidth: 300, margin: '0 auto' }}>
+                  <p style={{ fontSize: 14, color: 'var(--color-text-muted)', lineHeight: 1.5, maxWidth: 300, margin: '0 auto' }}>
                     {f.body}
                   </p>
                 </div>

@@ -27,7 +27,7 @@ export const Section: React.FC<SectionProps> = ({ children, id, background = 'wh
       className={className}
       style={{
         padding: isMobile ? '48px 0' : '80px 0',
-        background: background === 'gray' ? '#f5f5f7' : '#ffffff',
+        background: background === 'gray' ? 'var(--color-bg-secondary)' : 'var(--color-bg-primary)',
         ...style,
       }}
     >

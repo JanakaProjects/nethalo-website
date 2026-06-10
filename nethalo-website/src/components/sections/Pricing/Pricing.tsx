@@ -21,7 +21,7 @@ export const Pricing: React.FC = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section id="pricing" style={{ padding: isMobile ? '64px 0' : '120px 0', background: '#f5f5f7' }}>
+    <section id="pricing" style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-secondary)' }}>
       <Container>
         <FadeInUp>
           <h2 className="section-heading">Choose your protection</h2>
@@ -40,8 +40,8 @@ export const Pricing: React.FC = () => {
           {pricingPlans.map((plan, i) => (
             <FadeInUp key={plan.name} delay={i * 0.08}>
               <div style={{
-                background: '#ffffff',
-                border: `1px solid ${plan.highlighted ? '#0071e3' : '#d2d2d7'}`,
+                background: 'var(--color-bg-elevated)',
+                border: `1px solid ${plan.highlighted ? 'var(--color-brand-shield)' : 'var(--color-border-medium)'}`,
                 borderRadius: 12,
                 padding: 32,
                 display: 'flex',
@@ -55,17 +55,17 @@ export const Pricing: React.FC = () => {
                   <span style={{ fontSize: 36, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>
                     {plan.price}
                   </span>
-                  {plan.period && <span style={{ fontSize: 14, color: '#6e6e73', marginLeft: 4 }}>{plan.period}</span>}
+                  {plan.period && <span style={{ fontSize: 14, color: 'var(--color-text-muted)', marginLeft: 4 }}>{plan.period}</span>}
                 </div>
-                <p style={{ fontSize: 14, color: '#6e6e73', marginBottom: 24, lineHeight: 1.4 }}>
+                <p style={{ fontSize: 14, color: 'var(--color-text-muted)', marginBottom: 24, lineHeight: 1.4 }}>
                   {plan.description}
                 </p>
 
                 <ul style={{ marginBottom: 32, flex: 1 }}>
                   {plan.features.map(f => (
                     <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 10 }}>
-                      <Check size={16} style={{ color: '#0071e3', flexShrink: 0, marginTop: 2 }} />
-                      <span style={{ fontSize: 14, color: '#6e6e73' }}>{f}</span>
+                      <Check size={16} style={{ color: 'var(--color-brand-shield)', flexShrink: 0, marginTop: 2 }} />
+                      <span style={{ fontSize: 14, color: 'var(--color-text-muted)' }}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -76,7 +76,7 @@ export const Pricing: React.FC = () => {
                     width: '100%', padding: '12px 24px', borderRadius: 9999,
                     fontSize: 14, fontWeight: 600, cursor: 'pointer',
                     border: 'none', minHeight: 44, transition: 'all 0.2s',
-                    background: plan.highlighted ? '#0071e3' : '#f5f5f7',
+                    background: plan.highlighted ? 'var(--color-brand-shield)' : 'var(--color-bg-secondary)',
                     color: plan.highlighted ? 'white' : 'var(--color-text-primary)',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; }}
