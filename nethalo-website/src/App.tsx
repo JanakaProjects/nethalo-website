@@ -65,7 +65,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/reports" element={<PrivateRoute><PageWrapper><Reports /></PageWrapper></PrivateRoute>} />
         <Route path="/connect" element={<PrivateRoute><PageWrapper><Connect /></PageWrapper></PrivateRoute>} />
         <Route path="/settings" element={<PrivateRoute><PageWrapper><Settings /></PageWrapper></PrivateRoute>} />
-        <Route path="/help" element={<PrivateRoute><PageWrapper><Help /></PageWrapper></PrivateRoute>} />
+        <Route path="/help" element={<PageWrapper><Help /></PageWrapper>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
