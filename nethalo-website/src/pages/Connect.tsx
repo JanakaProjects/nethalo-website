@@ -76,7 +76,7 @@ export const Connect: React.FC = () => {
     return (
       <DashboardLayout>
         <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
-          <Loader2 size={32} className="animate-spin" style={{ color: '#0071e3' }} />
+          <Loader2 size={32} className="animate-spin" style={{ color: 'var(--color-brand-shield)' }} />
         </div>
       </DashboardLayout>
     );
@@ -84,8 +84,8 @@ export const Connect: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: '#1d1d1f', marginBottom: 4, letterSpacing: '-0.02em' }}>Connect Accounts</h1>
-      <p style={{ fontSize: isMobile ? 14 : 14, color: '#6e6e73', marginBottom: isMobile ? 20 : 28 }}>
+      <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4, letterSpacing: '-0.02em' }}>Connect Accounts</h1>
+      <p style={{ fontSize: isMobile ? 14 : 14, color: 'var(--color-text-secondary)', marginBottom: isMobile ? 20 : 28 }}>
         {connectedCount} of {accounts.length} platforms connected
       </p>
 
@@ -103,17 +103,17 @@ export const Connect: React.FC = () => {
           return (
             <div key={acc.platform}
               style={{
-                background: '#ffffff', border: `1px solid ${acc.connected ? '#30d158' : '#d2d2d7'}`,
+                background: 'var(--color-bg-elevated)', border: `1px solid ${acc.connected ? '#30d158' : 'var(--color-border-medium)'}`,
                 borderRadius: 12, padding: isMobile ? 16 : 24, display: 'flex', flexDirection: 'column',
                 transition: 'all 0.2s', opacity: isPending ? 0.7 : 1,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                <div style={{ width: isMobile ? 40 : 48, height: isMobile ? 40 : 48, borderRadius: 12, background: acc.connected ? '#f0fff4' : '#f5f5f7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon size={isMobile ? 20 : 22} style={{ color: acc.connected ? '#30d158' : '#86868b' }} />
+                <div style={{ width: isMobile ? 40 : 48, height: isMobile ? 40 : 48, borderRadius: 12, background: acc.connected ? '#f0fff4' : 'var(--color-bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon size={isMobile ? 20 : 22} style={{ color: acc.connected ? '#30d158' : 'var(--color-text-secondary)' }} />
                 </div>
                 <div>
-                  <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: '#1d1d1f' }}>{acc.label}</div>
+                  <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>{acc.label}</div>
                   {acc.connected && acc.username && (
                     <div style={{ fontSize: 13, color: '#30d158', marginTop: 2 }}>{acc.username}</div>
                   )}
@@ -121,7 +121,7 @@ export const Connect: React.FC = () => {
                 {acc.connected && <Check size={20} style={{ color: '#30d158', marginLeft: 'auto' }} />}
               </div>
 
-              <div style={{ fontSize: isMobile ? 13 : 13, color: '#6e6e73', marginBottom: 16, flex: 1 }}>
+              <div style={{ fontSize: isMobile ? 13 : 13, color: 'var(--color-text-secondary)', marginBottom: 16, flex: 1 }}>
                 {acc.connected
                   ? `Connected since ${acc.connected_at || 'recently'}. NETHALO is monitoring this platform for threats.`
                   : `Connect your ${acc.label} account to enable real-time threat detection.`}
@@ -132,12 +132,12 @@ export const Connect: React.FC = () => {
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                   width: '100%', height: 44, borderRadius: 9999, fontSize: 14, fontWeight: 600,
                   cursor: isPending ? 'not-allowed' : 'pointer', transition: 'all 0.2s', border: 'none',
-                  background: acc.connected ? '#f5f5f7' : '#0071e3',
-                  color: acc.connected ? '#1d1d1f' : 'white',
+                  background: acc.connected ? 'var(--color-bg-secondary)' : 'var(--color-brand-shield)',
+                  color: acc.connected ? 'var(--color-text-primary)' : 'var(--color-text-inverse)',
                   minHeight: 44, opacity: isPending ? 0.6 : 1,
                 }}
-                onMouseEnter={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = '#0077ed'; }}
-                onMouseLeave={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = '#0071e3'; }}
+                onMouseEnter={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = 'var(--color-brand-blue-hover)'; }}
+                onMouseLeave={e => { if (!acc.connected && !isPending) e.currentTarget.style.background = 'var(--color-brand-shield)'; }}
               >
                 {isPending ? <Loader2 size={16} className="animate-spin" /> : acc.connected ? <><Check size={16} /> Connected</> : <><Plus size={16} /> Connect {acc.label}</>}
               </button>

@@ -42,8 +42,8 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
         height: 44,
         display: 'flex', alignItems: 'center',
-        background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
-        borderBottom: scrolled ? '1px solid #d2d2d7' : '1px solid transparent',
+        background: scrolled ? 'var(--color-bg-elevated)' : 'transparent',
+        borderBottom: scrolled ? '1px solid var(--color-border-light)' : '1px solid transparent',
         transition: 'all 0.3s ease',
       }}
     >
@@ -57,7 +57,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
       >
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }} aria-label="NETHALO Home">
           <Logo variant="mark" size="sm" />
-          <span style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', letterSpacing: '-0.01em' }}>NETHALO</span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
         </a>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
@@ -68,11 +68,11 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                 href={item.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
                 style={{
-                  fontSize: 13, fontWeight: 400, color: '#6e6e73', textDecoration: 'none',
+                  fontSize: 13, fontWeight: 400, color: 'var(--color-text-secondary)', textDecoration: 'none',
                   transition: 'color 0.2s', cursor: 'pointer',
                 }}
-                onMouseEnter={e => e.currentTarget.style.color = '#1d1d1f'}
-                onMouseLeave={e => e.currentTarget.style.color = '#6e6e73'}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--color-text-primary)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-secondary)'}
               >
                 {item.label}
               </a>
@@ -84,12 +84,12 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
               <button
                 onClick={() => { navigate('/login'); setMobileOpen(false); }}
                 style={{
-                  fontSize: 13, fontWeight: 400, color: '#6e6e73', cursor: 'pointer',
+                  fontSize: 13, fontWeight: 400, color: 'var(--color-text-secondary)', cursor: 'pointer',
                   background: 'none', border: 'none', padding: '0 4px', minHeight: 44,
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={e => e.currentTarget.style.color = '#1d1d1f'}
-                onMouseLeave={e => e.currentTarget.style.color = '#6e6e73'}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--color-text-primary)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-secondary)'}
               >
                 Sign In
               </button>
@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                 onClick={() => { navigate('/signup'); setMobileOpen(false); }}
                 style={{
                   padding: '7px 16px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                  color: 'white', background: '#0071e3', border: 'none', cursor: 'pointer',
+                  color: '#ffffff', background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer',
                   transition: 'opacity 0.2s', minHeight: 44,
                 }}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: 36, height: 36, borderRadius: '50%', cursor: 'pointer',
-              transition: 'background 0.2s', color: '#1d1d1f',
+              transition: 'background 0.2s', color: 'var(--color-text-primary)',
             }}
             className="hamburger-btn"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
         <div
           style={{
             position: 'fixed', top: 44, left: 0, right: 0, bottom: 0,
-            background: '#ffffff', zIndex: 49, display: 'flex', flexDirection: 'column',
+            background: 'var(--color-bg-elevated)', zIndex: 49, display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'flex-start', paddingTop: 60,
           }}
           role="menu"
@@ -140,8 +140,8 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
               onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
               style={{
                 display: 'block', padding: '16px 24px', width: '100%', maxWidth: 400,
-                fontSize: 20, fontWeight: 600, color: '#1d1d1f', textDecoration: 'none',
-                textAlign: 'center', borderBottom: '1px solid #e8e8ed',
+                fontSize: 20, fontWeight: 600, color: 'var(--color-text-primary)', textDecoration: 'none',
+                textAlign: 'center', borderBottom: '1px solid var(--color-border-light)',
               }}
               role="menuitem"
             >
@@ -155,8 +155,8 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                   onClick={() => handleNavClick('/login')}
                   style={{
                     width: '100%', padding: '14px', borderRadius: 9999,
-                    fontSize: 16, fontWeight: 500, color: '#1d1d1f',
-                    background: '#f5f5f7', border: 'none', cursor: 'pointer',
+                    fontSize: 16, fontWeight: 500, color: 'var(--color-text-primary)',
+                    background: 'var(--color-bg-secondary)', border: 'none', cursor: 'pointer',
                     minHeight: 44, marginBottom: 8,
                   }}
                 >
@@ -166,8 +166,8 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
                   onClick={() => handleNavClick('/signup')}
                   style={{
                     width: '100%', padding: '14px', borderRadius: 9999,
-                    fontSize: 16, fontWeight: 600, color: 'white',
-                    background: '#0071e3', border: 'none', cursor: 'pointer',
+                    fontSize: 16, fontWeight: 600, color: '#ffffff',
+                    background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer',
                     minHeight: 44,
                   }}
                 >

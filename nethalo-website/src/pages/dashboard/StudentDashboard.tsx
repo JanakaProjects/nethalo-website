@@ -20,7 +20,7 @@ const SafetyScoreRing: React.FC<{ score: number; isMobile: boolean }> = ({ score
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
       <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#e8e8ed" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--color-border-light)" strokeWidth={stroke} />
         <motion.circle
           cx={size / 2} cy={size / 2} r={radius} fill="none" stroke={color} strokeWidth={stroke}
           strokeLinecap="round" strokeDasharray={circumference}
@@ -34,11 +34,11 @@ const SafetyScoreRing: React.FC<{ score: number; isMobile: boolean }> = ({ score
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          style={{ fontSize: isMobile ? 24 : 30, fontWeight: 700, color: '#1d1d1f' }}
+          style={{ fontSize: isMobile ? 24 : 30, fontWeight: 700, color: 'var(--color-text-primary)' }}
         >
           {score}
         </motion.span>
-        <span style={{ fontSize: 11, color: '#86868b', marginTop: -2 }}>Safe</span>
+        <span style={{ fontSize: 11, color: 'var(--color-text-secondary)', marginTop: -2 }}>Safe</span>
       </div>
     </div>
   );
@@ -78,15 +78,15 @@ const StudentDashboard: React.FC = () => {
         icon: <Shield size={14} />,
         color: a.severity === 'critical' ? '#ff3b30' : a.severity === 'high' ? '#ff9500' : '#0071e3',
       }))
-    : [{ text: 'No recent activity', time: '', icon: <Activity size={14} />, color: '#86868b' }];
+    : [{ text: 'No recent activity', time: '', icon: <Activity size={14} />, color: 'var(--color-text-secondary)' }];
 
   return (
     <DashboardLayout>
       <div style={{ marginBottom: isMobile ? 24 : 32 }}>
-        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: '#1d1d1f', margin: 0, letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0, letterSpacing: '-0.02em' }}>
           Welcome back, {user?.name?.split(' ')[0] || 'Student'}
         </h1>
-        <p style={{ fontSize: isMobile ? 14 : 16, color: '#86868b', marginTop: 6 }}>Here&apos;s your current safety overview</p>
+        <p style={{ fontSize: isMobile ? 14 : 16, color: 'var(--color-text-secondary)', marginTop: 6 }}>Here&apos;s your current safety overview</p>
       </div>
 
       {/* Getting Started / Help Guide Card */}
@@ -131,7 +131,7 @@ const StudentDashboard: React.FC = () => {
               <a href="/help" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
                 padding: '8px 16px', borderRadius: 10,
-                background: 'var(--color-brand-shield)', color: '#ffffff',
+                background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)',
                 fontSize: 13, fontWeight: 600, textDecoration: 'none',
                 transition: 'background 0.2s',
               }} onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'}
@@ -155,13 +155,13 @@ const StudentDashboard: React.FC = () => {
       <StaggerContainer>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(220px, 1fr))', gap: isMobile ? 12 : 16, marginBottom: isMobile ? 24 : 32 }}>
           <FadeInUp delay={0}>
-            <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: isMobile ? 120 : 140, position: 'relative' }}>
+            <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid var(--color-border-light)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: isMobile ? 120 : 140, position: 'relative' }}>
               <SafetyScoreRing score={safeScore} isMobile={isMobile} />
-              <div style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', marginTop: 8 }}>Safety Score</div>
+              <div style={{ fontSize: isMobile ? 13 : 14, color: 'var(--color-text-secondary)', marginTop: 8 }}>Safety Score</div>
             </div>
           </FadeInUp>
           {[
-            { icon: <Activity size={isMobile ? 18 : 22} />, label: 'Reports Filed', value: stats?.activeReports ?? '-', color: '#0071e3' },
+            { icon: <Activity size={isMobile ? 18 : 22} />, label: 'Reports Filed', value: stats?.activeReports ?? '-', color: 'var(--color-brand-shield)' },
             { icon: <Users size={isMobile ? 18 : 22} />, label: 'Support Contacts', value: stats?.connectedChildren ?? '-', color: '#af52de' },
             { icon: <TrendingUp size={isMobile ? 18 : 22} />, label: 'Days Safe', value: stats?.safeScore ? `${Math.round(stats.safeScore / 10)}` : '-', trend: '↑ 3', trendUp: true, color: '#ff9500' },
           ].map((card, i) => (
@@ -177,13 +177,13 @@ const StudentDashboard: React.FC = () => {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 12 : 24, marginBottom: isMobile ? 24 : 32 }}>
-        <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px 24px 20px', border: '1px solid #e8e8ed' }}>
+        <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px 24px 20px', border: '1px solid var(--color-border-light)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
             <div>
-              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Weekly Activity</h3>
-              <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: 0 }}>Interactions flagged this week</p>
+              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: '0 0 4px 0' }}>Weekly Activity</h3>
+              <p style={{ fontSize: isMobile ? 13 : 14, color: 'var(--color-text-secondary)', margin: 0 }}>Interactions flagged this week</p>
             </div>
-            <a href="/api/export/threats" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
+            <a href="/api/export/threats" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: 'var(--color-brand-shield-light)', color: 'var(--color-brand-shield)', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
               <Download size={14} /> Export
             </a>
           </div>
@@ -195,7 +195,7 @@ const StudentDashboard: React.FC = () => {
                 const isHighest = scaledValue === Math.round(maxBarValue * barScale);
                 return (
                   <div key={bar.label} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <div style={{ fontSize: 10, fontWeight: 600, color: '#86868b' }}>{bar.value}</div>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--color-text-secondary)' }}>{bar.value}</div>
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{ height: `${Math.max(scaledValue, 6)}%` }}
@@ -207,36 +207,36 @@ const StudentDashboard: React.FC = () => {
                         boxShadow: isHighest ? `0 0 12px ${barColor}66` : 'none',
                       }}
                     />
-                    <div style={{ fontSize: isMobile ? 10 : 12, color: '#86868b' }}>{bar.label}</div>
+                    <div style={{ fontSize: isMobile ? 10 : 12, color: 'var(--color-text-secondary)' }}>{bar.label}</div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            <div style={{ fontSize: 14, color: '#86868b', textAlign: 'center', padding: '20px 0' }}>
+            <div style={{ fontSize: 14, color: 'var(--color-text-secondary)', textAlign: 'center', padding: '20px 0' }}>
               <div style={{ marginBottom: 6 }}>No activity recorded this week.</div>
-              <a href="/help" style={{ fontSize: 13, color: '#0071e3', textDecoration: 'none', fontWeight: 500 }}>
+              <a href="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500 }}>
                 Learn how activity tracking works →
               </a>
             </div>
           )}
         </div>
 
-        <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed' }}>
-          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 16px 0' }}>Recent Activity</h3>
+        <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid var(--color-border-light)' }}>
+          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: '0 0 16px 0' }}>Recent Activity</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 12 : 14 }}>
             {activityItems.map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 <div style={{ width: 28, height: 28, borderRadius: 8, background: `${item.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: item.color, flexShrink: 0 }}>{item.icon}</div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 500, color: '#1d1d1f', lineHeight: 1.4 }}>{item.text}</div>
-                  {item.time && <div style={{ fontSize: 11, color: '#86868b', marginTop: 2 }}>{item.time}</div>}
+                  <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 500, color: 'var(--color-text-primary)', lineHeight: 1.4 }}>{item.text}</div>
+                  {item.time && <div style={{ fontSize: 11, color: 'var(--color-text-secondary)', marginTop: 2 }}>{item.time}</div>}
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f5f5f7' }}>
-            <a href="/help" style={{ fontSize: 13, color: '#0071e3', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--color-border-light)' }}>
+            <a href="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               Learn more about activity tracking →
             </a>
           </div>
@@ -244,16 +244,16 @@ const StudentDashboard: React.FC = () => {
       </div>
 
       <div>
-        <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 12px 0' }}>Quick Actions</h3>
+        <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: '0 0 12px 0' }}>Quick Actions</h3>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(auto-fit, minmax(180px, 1fr))', gap: isMobile ? 10 : 12 }}>
           {actions.map(action => (
             <button key={action.label} onClick={() => { if (action.action === 'talk') setActiveModal('talk'); else setActiveModal(action.action); }}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: isMobile ? 8 : 10, padding: isMobile ? '14px' : '20px', borderRadius: 16, border: '1px solid #e8e8ed', background: '#ffffff', cursor: 'pointer', transition: 'all 0.3s', textAlign: 'left', minHeight: 44 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: isMobile ? 8 : 10, padding: isMobile ? '14px' : '20px', borderRadius: 16, border: '1px solid var(--color-border-light)', background: 'var(--color-bg-elevated)', cursor: 'pointer', transition: 'all 0.3s', textAlign: 'left', minHeight: 44 }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'; e.currentTarget.style.borderColor = action.color; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#e8e8ed'; }}>
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'var(--color-border-light)'; }}>
               <div style={{ width: isMobile ? 36 : 40, height: isMobile ? 36 : 40, borderRadius: 10, background: `${action.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: action.color }}>{action.icon}</div>
-              <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: '#1d1d1f' }}>{action.label}</div>
-              <div style={{ fontSize: isMobile ? 12 : 13, color: '#86868b', lineHeight: 1.3 }}>{action.desc}</div>
+              <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>{action.label}</div>
+              <div style={{ fontSize: isMobile ? 12 : 13, color: 'var(--color-text-secondary)', lineHeight: 1.3 }}>{action.desc}</div>
             </button>
           ))}
         </div>
@@ -262,15 +262,15 @@ const StudentDashboard: React.FC = () => {
       {activeModal === 'report' && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? 12 : 20 }}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} onClick={() => setActiveModal(null)} />
-          <div style={{ position: 'relative', background: '#ffffff', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
+          <div style={{ position: 'relative', background: 'var(--color-bg-elevated)', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
             <div style={{ width: isMobile ? 44 : 52, height: isMobile ? 44 : 52, borderRadius: 12, background: '#fff3e0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ff9500', marginBottom: 16 }}><AlertTriangle size={isMobile ? 22 : 26} /></div>
-            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: '#1d1d1f', margin: '0 0 8px 0' }}>Report a Concern</h2>
-            <p style={{ fontSize: isMobile ? 14 : 15, color: '#86868b', margin: '0 0 20px 0', lineHeight: 1.5 }}>Your report will remain anonymous. A school administrator will review it as soon as possible.</p>
+            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 8px 0' }}>Report a Concern</h2>
+            <p style={{ fontSize: isMobile ? 14 : 15, color: 'var(--color-text-secondary)', margin: '0 0 20px 0', lineHeight: 1.5 }}>Your report will remain anonymous. A school administrator will review it as soon as possible.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
-                <label style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', display: 'block', marginBottom: 6 }}>Type of concern</label>
-                <select style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid #d2d2d7', fontSize: 15, color: '#1d1d1f', background: '#fff', appearance: 'none', cursor: 'pointer', minHeight: 44 }}>
+                <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Type of concern</label>
+                <select style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', background: 'var(--color-bg-elevated)', appearance: 'none', cursor: 'pointer', minHeight: 44 }}>
                   <option>Cyberbullying</option>
                   <option>Harassment</option>
                   <option>Threatening behavior</option>
@@ -278,11 +278,11 @@ const StudentDashboard: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', display: 'block', marginBottom: 6 }}>Description</label>
-                <textarea rows={4} placeholder="Describe what happened..." style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid #d2d2d7', fontSize: 15, color: '#1d1d1f', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
+                <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Description</label>
+                <textarea rows={4} placeholder="Describe what happened..." style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
               </div>
-              <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: '#0071e3', color: '#fff', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
-                onMouseEnter={e => e.currentTarget.style.background = '#0077ed'} onMouseLeave={e => e.currentTarget.style.background = '#0071e3'} onClick={() => setActiveModal(null)}>
+              <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
+                onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'} onClick={() => setActiveModal(null)}>
                 Submit Report <ArrowRight size={18} />
               </button>
             </div>
@@ -293,22 +293,22 @@ const StudentDashboard: React.FC = () => {
       {activeModal === 'view' && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? 12 : 20 }}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} onClick={() => setActiveModal(null)} />
-          <div style={{ position: 'relative', background: '#ffffff', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
+          <div style={{ position: 'relative', background: 'var(--color-bg-elevated)', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
             <div style={{ width: isMobile ? 44 : 52, height: isMobile ? 44 : 52, borderRadius: 12, background: '#e8f8e8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#34c759', marginBottom: 16 }}><FileText size={isMobile ? 22 : 26} /></div>
-            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: '#1d1d1f', margin: '0 0 8px 0' }}>Your Reports</h2>
-            <p style={{ fontSize: isMobile ? 14 : 15, color: '#86868b', margin: '0 0 20px 0', lineHeight: 1.5 }}>Here are your submitted reports and their current status.</p>
+            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 8px 0' }}>Your Reports</h2>
+            <p style={{ fontSize: isMobile ? 14 : 15, color: 'var(--color-text-secondary)', margin: '0 0 20px 0', lineHeight: 1.5 }}>Here are your submitted reports and their current status.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { id: '#1042', type: 'Cyberbullying', status: 'Resolved', date: 'May 28, 2026', color: '#34c759' },
                 { id: '#1087', type: 'Harassment', status: 'In Review', date: 'Jun 2, 2026', color: '#ff9500' },
                 { id: '#1123', type: 'Threatening behavior', status: 'Pending', date: 'Jun 5, 2026', color: '#ff3b30' },
               ].map((report, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '12px 14px' : '14px 16px', borderRadius: 12, background: '#f5f5f7' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '12px 14px' : '14px 16px', borderRadius: 12, background: 'var(--color-bg-secondary)' }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: report.color, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: '#1d1d1f' }}>{report.type}</div>
-                    <div style={{ fontSize: 12, color: '#86868b' }}>{report.id} · {report.date}</div>
+                    <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>{report.type}</div>
+                    <div style={{ fontSize: 12, color: 'var(--color-text-secondary)' }}>{report.id} · {report.date}</div>
                   </div>
                   <div style={{ fontSize: 12, fontWeight: 600, padding: '3px 12px', borderRadius: 20, background: report.status === 'Resolved' ? '#e8f8e8' : report.status === 'In Review' ? '#fff3e0' : '#fff0ee', color: report.color, whiteSpace: 'nowrap' }}>{report.status}</div>
                 </div>
@@ -321,30 +321,30 @@ const StudentDashboard: React.FC = () => {
       {activeModal === 'talk' && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? 12 : 20 }}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} onClick={() => setActiveModal(null)} />
-          <div style={{ position: 'relative', background: '#ffffff', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
-            <div style={{ width: isMobile ? 44 : 52, height: isMobile ? 44 : 52, borderRadius: 12, background: '#e8f0fe', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0071e3', marginBottom: 16 }}><MessageCircle size={isMobile ? 22 : 26} /></div>
-            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: '#1d1d1f', margin: '0 0 8px 0' }}>Talk to Someone</h2>
-            <p style={{ fontSize: isMobile ? 14 : 15, color: '#86868b', margin: '0 0 20px 0', lineHeight: 1.5 }}>If you need immediate help, please reach out to one of these resources.</p>
+          <div style={{ position: 'relative', background: 'var(--color-bg-elevated)', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
+            <div style={{ width: isMobile ? 44 : 52, height: isMobile ? 44 : 52, borderRadius: 12, background: 'var(--color-brand-shield-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-brand-shield)', marginBottom: 16 }}><MessageCircle size={isMobile ? 22 : 26} /></div>
+            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 8px 0' }}>Talk to Someone</h2>
+            <p style={{ fontSize: isMobile ? 14 : 15, color: 'var(--color-text-secondary)', margin: '0 0 20px 0', lineHeight: 1.5 }}>If you need immediate help, please reach out to one of these resources.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { label: 'School Counselor', sub: 'Mrs. Rodriguez', icon: <Users size={isMobile ? 18 : 20} />, color: '#0071e3', available: true },
                 { label: 'Crisis Helpline', sub: 'Call or text 988', icon: <Phone size={isMobile ? 18 : 20} />, color: '#34c759', available: true },
                 { label: 'Safe2Say', sub: 'Anonymous tip line', icon: <Mail size={isMobile ? 18 : 20} />, color: '#af52de', available: true },
               ].map((resource, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '12px 14px' : '14px 16px', borderRadius: 12, background: '#f5f5f7', cursor: 'pointer', transition: 'all 0.2s', minHeight: 44 }}
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '12px 14px' : '14px 16px', borderRadius: 12, background: 'var(--color-bg-secondary)', cursor: 'pointer', transition: 'all 0.2s', minHeight: 44 }}
                   onMouseEnter={e => e.currentTarget.style.background = '#eee'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#f5f5f7'}>
+                  onMouseLeave={e => e.currentTarget.style.background = 'var(--color-bg-secondary)'}>
                   <div style={{ width: 36, height: 36, borderRadius: 10, background: `${resource.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: resource.color }}>{resource.icon}</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: '#1d1d1f' }}>{resource.label}</div>
-                    <div style={{ fontSize: 12, color: '#86868b' }}>{resource.sub}</div>
+                    <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>{resource.label}</div>
+                    <div style={{ fontSize: 12, color: 'var(--color-text-secondary)' }}>{resource.sub}</div>
                   </div>
-                  <ExternalLink size={16} style={{ color: '#86868b', flexShrink: 0 }} />
+                  <ExternalLink size={16} style={{ color: 'var(--color-text-secondary)', flexShrink: 0 }} />
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: 12, color: '#86868b', marginTop: 20, lineHeight: 1.5, textAlign: 'center' }}>If this is an emergency, please call 911 immediately.</p>
+            <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', marginTop: 20, lineHeight: 1.5, textAlign: 'center' }}>If this is an emergency, please call 911 immediately.</p>
           </div>
         </div>
       )}
@@ -352,17 +352,17 @@ const StudentDashboard: React.FC = () => {
       {activeModal === 'journal' && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? 12 : 20 }}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)' }} onClick={() => setActiveModal(null)} />
-          <div style={{ position: 'relative', background: '#ffffff', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
+          <div style={{ position: 'relative', background: 'var(--color-bg-elevated)', borderRadius: 20, padding: isMobile ? 24 : 32, maxWidth: 480, width: '100%', boxShadow: '0 24px 48px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+            <button onClick={() => setActiveModal(null)} style={{ position: 'absolute', top: 12, right: 12, width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }}><X size={18} /></button>
             <div style={{ width: isMobile ? 44 : 52, height: isMobile ? 44 : 52, borderRadius: 12, background: '#f5e6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#af52de', marginBottom: 16 }}><BookOpen size={isMobile ? 22 : 26} /></div>
-            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: '#1d1d1f', margin: '0 0 8px 0' }}>Start a Journal</h2>
-            <p style={{ fontSize: isMobile ? 14 : 15, color: '#86868b', margin: '0 0 20px 0', lineHeight: 1.5 }}>Write a private journal entry. Your thoughts are stored securely on your device.</p>
+            <h2 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 8px 0' }}>Start a Journal</h2>
+            <p style={{ fontSize: isMobile ? 14 : 15, color: 'var(--color-text-secondary)', margin: '0 0 20px 0', lineHeight: 1.5 }}>Write a private journal entry. Your thoughts are stored securely on your device.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
-                <label style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', display: 'block', marginBottom: 6 }}>Today&apos;s entry</label>
-                <textarea rows={6} placeholder="How are you feeling today?" style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid #d2d2d7', fontSize: 15, color: '#1d1d1f', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
+                <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Today&apos;s entry</label>
+                <textarea rows={6} placeholder="How are you feeling today?" style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
               </div>
-              <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: '#af52de', color: '#fff', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
+              <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: '#af52de', color: 'var(--color-text-inverse)', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
                 onMouseEnter={e => e.currentTarget.style.background = '#c06cf0'} onMouseLeave={e => e.currentTarget.style.background = '#af52de'} onClick={() => setActiveModal(null)}>
                 Save Entry <ArrowRight size={18} />
               </button>
