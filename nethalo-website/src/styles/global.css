@@ -31,14 +31,14 @@ input { font: inherit; border: none; background: none; outline: none; }
 ul, ol { list-style: none; }
 img, svg { display: block; max-width: 100%; }
 
-::selection { background: var(--color-brand-blue); color: white; }
+::selection { background: var(--color-brand-blue); color: var(--color-text-inverse); }
 
 .section-heading {
   font-size: var(--text-5xl);
   font-weight: var(--font-bold);
   letter-spacing: -0.012em;
   line-height: var(--leading-tight);
-  color: #1d1d1f;
+  color: var(--color-text-primary);
   margin-bottom: var(--space-4);
   text-align: center;
 }
@@ -46,7 +46,7 @@ img, svg { display: block; max-width: 100%; }
 .section-subhead {
   font-size: var(--text-lg);
   font-weight: var(--font-regular);
-  color: #6e6e73;
+  color: var(--color-text-secondary);
   max-width: 640px;
   margin: 0 auto var(--space-12);
   text-align: center;
@@ -63,3 +63,9 @@ img, svg { display: block; max-width: 100%; }
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
