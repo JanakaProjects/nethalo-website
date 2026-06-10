@@ -41,7 +41,7 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'full', size = 'md', class
   return (
     <div className={cn('flex items-center', className)} style={{ gap }}>
       <LogoMark />
-      {variant === 'full' && <span style={{ fontSize: font, fontWeight: 800, color: '#1d1d1f', letterSpacing: '-0.02em' }}>NETHALO</span>}
+      {variant === 'full' && <span style={{ fontSize: font, fontWeight: 800, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>NETHALO</span>}
     </div>
   );
 };

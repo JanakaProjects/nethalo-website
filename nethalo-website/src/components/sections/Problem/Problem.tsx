@@ -26,7 +26,7 @@ const StatCard: React.FC<{ value: string; label: string; index: number }> = ({ v
     <div style={{ textAlign: 'center' }}>
       <div style={{
         fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 700, letterSpacing: '-0.02em',
-        color: '#1d1d1f', marginBottom: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2,
+        color: 'var(--color-text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2,
       }}>
         {isMultiplier ? (
           <CountUp end={endValue} suffix="×" duration={2} delay={index * 0.15} />

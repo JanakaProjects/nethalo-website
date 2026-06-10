@@ -39,8 +39,8 @@ const StatCard: React.FC<StatCardProps> = ({ icon, label, value, trend, trendUp,
         )}
       </div>
       <div style={{ marginTop: isMobile ? 12 : 20 }}>
-        <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: '#1d1d1f', letterSpacing: '-0.02em' }}>{value}</div>
-        <div style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', marginTop: 4 }}>{label}</div>
+        <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>{value}</div>
+        <div style={{ fontSize: isMobile ? 13 : 14, color: 'var(--color-text-secondary)', marginTop: 4 }}>{label}</div>
       </div>
     </div>
   );

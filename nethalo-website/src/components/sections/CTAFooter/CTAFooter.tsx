@@ -49,7 +49,7 @@ export const CTAFooter: React.FC = () => {
           }}>
             <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }} aria-label="NETHALO Home">
               <Logo variant="mark" size="sm" />
-              <span style={{ fontSize: 13, fontWeight: 600, color: '#1d1d1f' }}>NETHALO</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>NETHALO</span>
             </a>
 
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
@@ -81,7 +81,7 @@ export const CTAFooter: React.FC = () => {
           <div style={{
             marginTop: 24, paddingTop: 16,
             borderTop: '1px solid #e8e8ed',
-            fontSize: 12, color: '#86868b',
+            fontSize: 12, color: 'var(--color-text-secondary)',
             display: 'flex', justifyContent: 'center',
           }}>
             {navigation.legalText}

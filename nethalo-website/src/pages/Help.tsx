@@ -22,7 +22,7 @@ const helpTopics: HelpItem[] = [
     icon: Shield,
     title: 'Dashboard Overview',
     description: 'Your Safety Score reflects how safe your online environment is based on recent activity. Higher scores mean fewer threats detected. The weekly activity chart and recent activity feed keep you informed about flagged interactions.',
-    color: '#0071e3',
+    color: 'var(--color-brand-shield)',
     bgColor: '#e0f2fe',
   },
   {
@@ -36,7 +36,7 @@ const helpTopics: HelpItem[] = [
     icon: MessageCircle,
     title: 'Talk to Someone',
     description: 'Feeling overwhelmed? Connect with a school counselor, crisis helpline, or use the anonymous tip line. Help is available 24/7. Speaking up is always a sign of strength.',
-    color: '#0071e3',
+    color: 'var(--color-brand-shield)',
     bgColor: '#e0f2fe',
   },
   {
@@ -57,7 +57,7 @@ const helpTopics: HelpItem[] = [
     icon: Activity,
     title: 'Safety Score Explained',
     description: 'Your Safety Score (0-100) estimates how safe your online environment is. A higher score means fewer threats detected. Scores below 60 indicate concerning activity that may need attention from a trusted adult.',
-    color: '#0071e3',
+    color: 'var(--color-brand-shield)',
     bgColor: '#e0f2fe',
   },
   {
@@ -129,10 +129,10 @@ export const Help: React.FC = () => {
         .faq-arrow.open { transform: rotate(180deg); }
       `}</style>
       <div style={{ marginBottom: isMobile ? 24 : 32 }}>
-        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: '#1d1d1f', margin: 0, letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0, letterSpacing: '-0.02em' }}>
           Help &amp; Guide
         </h1>
-        <p style={{ fontSize: isMobile ? 14 : 16, color: '#86868b', marginTop: 6 }}>
+        <p style={{ fontSize: isMobile ? 14 : 16, color: 'var(--color-text-secondary)', marginTop: 6 }}>
           Everything you need to know about NETHALO
         </p>
       </div>
@@ -140,19 +140,19 @@ export const Help: React.FC = () => {
       {/* Search */}
       <div style={{ marginBottom: isMobile ? 20 : 24 }}>
         <div style={{ position: 'relative' }}>
-          <Search size={18} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: '#86868b' }} />
+          <Search size={18} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-secondary)' }} />
           <input
             type="text"
             placeholder="Search for topics..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
-              width: '100%', padding: '14px 16px 14px 44px', borderRadius: 12, border: '1px solid #e8e8ed',
-              fontSize: 15, color: '#1d1d1f', background: '#ffffff', outline: 'none',
+              width: '100%', padding: '14px 16px 14px 44px', borderRadius: 12, border: '1px solid var(--color-border-light)',
+              fontSize: 15, color: 'var(--color-text-primary)', background: 'var(--color-bg-elevated)', outline: 'none',
               boxShadow: '0 1px 2px rgba(0,0,0,0.05)', minHeight: 48, transition: 'border-color 0.2s',
             }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = '#0071e3'; }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = '#e8e8ed'; }}
+            onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-brand-shield)'; }}
+            onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; }}
           />
         </div>
       </div>
@@ -170,8 +170,8 @@ export const Help: React.FC = () => {
               style={{
                 padding: isMobile ? '20px' : '24px',
                 borderRadius: 16,
-                border: '1px solid #e8e8ed',
-                background: '#ffffff',
+                border: '1px solid var(--color-border-light)',
+                background: 'var(--color-bg-elevated)',
                 transition: 'box-shadow 0.3s, border-color 0.3s',
                 cursor: 'default',
               }}
@@ -181,7 +181,7 @@ export const Help: React.FC = () => {
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.borderColor = '#e8e8ed';
+                e.currentTarget.style.borderColor = 'var(--color-border-light)';
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
@@ -193,9 +193,9 @@ export const Help: React.FC = () => {
                 }}>
                   <Icon size={20} />
                 </div>
-                <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f' }}>{item.title}</span>
+                <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)' }}>{item.title}</span>
               </div>
-              <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', lineHeight: 1.55, margin: 0 }}>{item.description}</p>
+              <p style={{ fontSize: isMobile ? 13 : 14, color: 'var(--color-text-secondary)', lineHeight: 1.55, margin: 0 }}>{item.description}</p>
             </motion.div>
           );
         })}
@@ -203,14 +203,14 @@ export const Help: React.FC = () => {
 
       {/* FAQ Section */}
       <div style={{ marginBottom: isMobile ? 24 : 32 }}>
-        <h2 style={{ fontSize: isMobile ? 18 : 20, fontWeight: 700, color: '#1d1d1f', margin: '0 0 16px 0' }}>
+        <h2 style={{ fontSize: isMobile ? 18 : 20, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 16px 0' }}>
           Frequently Asked Questions
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {faqs.map((faq, i) => (
             <div
               key={i}
-              style={{ borderRadius: 12, border: '1px solid #e8e8ed', overflow: 'hidden', background: '#ffffff' }}
+              style={{ borderRadius: 12, border: '1px solid var(--color-border-light)', overflow: 'hidden', background: 'var(--color-bg-elevated)' }}
             >
               <button
                 onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
@@ -220,10 +220,10 @@ export const Help: React.FC = () => {
                   cursor: 'pointer', textAlign: 'left',
                 }}
               >
-                <span style={{ fontSize: 14.5, fontWeight: 600, color: '#1d1d1f', flex: 1, paddingRight: 12 }}>{faq.question}</span>
+                <span style={{ fontSize: 14.5, fontWeight: 600, color: 'var(--color-text-primary)', flex: 1, paddingRight: 12 }}>{faq.question}</span>
                 <ChevronDown
                   size={18}
-                  color="#86868b"
+                  color="var(--color-text-secondary)"
                   style={{
                     flexShrink: 0,
                     transform: expandedFaq === i ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -240,7 +240,7 @@ export const Help: React.FC = () => {
                     transition={{ duration: 0.25, ease: 'easeInOut' }}
                     style={{ overflow: 'hidden' }}
                   >
-                    <div style={{ padding: isMobile ? '0 16px 14px' : '0 20px 16px', fontSize: 14, color: '#86868b', lineHeight: 1.6 }}>
+                    <div style={{ padding: isMobile ? '0 16px 14px' : '0 20px 16px', fontSize: 14, color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -262,12 +262,12 @@ export const Help: React.FC = () => {
         gap: 12,
         flexDirection: isMobile ? 'column' : 'row',
       }}>
-        <Info size={24} color="#0071e3" style={{ flexShrink: 0 }} />
+        <Info size={24} color="var(--color-brand-shield)" style={{ flexShrink: 0 }} />
         <div>
-          <div style={{ fontSize: 15, fontWeight: 600, color: '#1d1d1f', marginBottom: 4 }}>
+          <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 4 }}>
             Need more help?
           </div>
-          <div style={{ fontSize: 14, color: '#86868b', lineHeight: 1.5 }}>
+          <div style={{ fontSize: 14, color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
             Contact your school counselor, use the <strong>Talk to Someone</strong> feature, or reach out through your school&apos;s support channels.
           </div>
         </div>

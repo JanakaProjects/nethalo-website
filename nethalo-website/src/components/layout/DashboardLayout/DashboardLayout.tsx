@@ -46,7 +46,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           <span style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
         </Link>
         {isMobile && (
-          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
+          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
             <X size={20} />
           </button>
         )}

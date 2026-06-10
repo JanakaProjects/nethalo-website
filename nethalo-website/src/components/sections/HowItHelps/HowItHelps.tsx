@@ -44,7 +44,7 @@ export const HowItHelps: React.FC = () => {
                 }}>
                   {step.step}
                 </div>
-                <h3 style={{ fontSize: 17, fontWeight: 600, color: '#1d1d1f', marginBottom: 8 }}>
+                <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 8 }}>
                   {step.title}
                 </h3>
                 <p style={{ fontSize: 14, color: '#6e6e73', lineHeight: 1.5 }}>

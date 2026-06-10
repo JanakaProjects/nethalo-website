@@ -47,8 +47,8 @@ const AdminDashboard: React.FC = () => {
   return (
     <DashboardLayout>
       <div style={{ marginBottom: isMobile ? 24 : 32 }}>
-        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: '#1d1d1f', margin: 0, letterSpacing: '-0.02em' }}>Admin Dashboard</h1>
-        <p style={{ fontSize: isMobile ? 14 : 16, color: '#86868b', marginTop: 6 }}>School-wide safety oversight</p>
+        <h1 style={{ fontSize: isMobile ? 22 : 28, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0, letterSpacing: '-0.02em' }}>Admin Dashboard</h1>
+        <p style={{ fontSize: isMobile ? 14 : 16, color: 'var(--color-text-secondary)', marginTop: 6 }}>School-wide safety oversight</p>
       </div>
 
       {error && (
@@ -77,8 +77,8 @@ const AdminDashboard: React.FC = () => {
         <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px 24px 20px', border: '1px solid #e8e8ed' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
             <div>
-              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 4px 0' }}>Reports This Week</h3>
-              <p style={{ fontSize: isMobile ? 13 : 14, color: '#86868b', margin: 0 }}>Total: {stats?.totalThreats ?? 0} threats recorded</p>
+              <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: '0 0 4px 0' }}>Reports This Week</h3>
+              <p style={{ fontSize: isMobile ? 13 : 14, color: 'var(--color-text-secondary)', margin: 0 }}>Total: {stats?.totalThreats ?? 0} threats recorded</p>
             </div>
             <a href="/api/export/threats" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
               <Download size={14} /> Export
@@ -94,14 +94,14 @@ const AdminDashboard: React.FC = () => {
               ))}
             </div>
           ) : barData.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '24px 0', color: '#86868b', fontSize: 14 }}>No threats recorded this week</div>
+            <div style={{ textAlign: 'center', padding: '24px 0', color: 'var(--color-text-secondary)', fontSize: 14 }}>No threats recorded this week</div>
           ) : (
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: isMobile ? 6 : 8, height: isMobile ? 100 : 140 }}>
               {barData.map((bar: { day: string; threats: number }) => {
                 const pct = maxBarValue > 0 ? (bar.threats / maxBarValue) * 100 : 0;
                 return (
                   <div key={bar.day} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <div style={{ fontSize: 10, fontWeight: 600, color: '#86868b' }}>{bar.threats}</div>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--color-text-secondary)' }}>{bar.threats}</div>
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{ height: `${pct}%` }}
@@ -113,7 +113,7 @@ const AdminDashboard: React.FC = () => {
                         transition: 'height 0.5s',
                       }}
                     />
-                    <div style={{ fontSize: isMobile ? 10 : 12, color: '#86868b' }}>{bar.day}</div>
+                    <div style={{ fontSize: isMobile ? 10 : 12, color: 'var(--color-text-secondary)' }}>{bar.day}</div>
                   </div>
                 );
               })}
@@ -123,7 +123,7 @@ const AdminDashboard: React.FC = () => {
 
         {/* Pending Reports */}
         <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed' }}>
-          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: '0 0 16px 0' }}>Pending Reports</h3>
+          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: '0 0 16px 0' }}>Pending Reports</h3>
           {isLoading ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 12 }}>
               {Array.from({ length: 3 }).map((_, i) => (
@@ -138,7 +138,7 @@ const AdminDashboard: React.FC = () => {
               ))}
             </div>
           ) : pendingReports.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '24px 0', color: '#86868b', fontSize: 14 }}>No pending reports</div>
+            <div style={{ textAlign: 'center', padding: '24px 0', color: 'var(--color-text-secondary)', fontSize: 14 }}>No pending reports</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 12 }}>
               {pendingReports.map((report: Report) => {
@@ -154,10 +154,10 @@ const AdminDashboard: React.FC = () => {
                       {priority.label === 'High' ? <AlertTriangle size={14} /> : priority.label === 'Medium' ? <FileText size={14} /> : <Clock size={14} />}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 500, color: '#1d1d1f', lineHeight: 1.4 }}>
+                      <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 500, color: 'var(--color-text-primary)', lineHeight: 1.4 }}>
                         {report.description || report.type || 'Report'}
                       </div>
-                      <div style={{ fontSize: 11, color: '#86868b', marginTop: 2 }}>{report.created_at || 'Recently'}</div>
+                      <div style={{ fontSize: 11, color: 'var(--color-text-secondary)', marginTop: 2 }}>{report.created_at || 'Recently'}</div>
                     </div>
                     <div style={{
                       fontSize: 11, fontWeight: 600, padding: '3px 10px', borderRadius: 20, whiteSpace: 'nowrap', flexShrink: 0,
@@ -176,7 +176,7 @@ const AdminDashboard: React.FC = () => {
       {/* Recent Actions */}
       <div style={{ background: '#ffffff', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid #e8e8ed' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: '#1d1d1f', margin: 0 }}>Recent Reports</h3>
+          <h3 style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: 'var(--color-text-primary)', margin: 0 }}>Recent Reports</h3>
           <a href="/api/export/reports" download style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '6px 12px', borderRadius: 8, background: '#f0f7ff', color: '#0071e3', fontSize: 12, fontWeight: 600, textDecoration: 'none', minHeight: 32 }}>
             <Download size={14} /> Export
           </a>
@@ -192,14 +192,14 @@ const AdminDashboard: React.FC = () => {
             ))}
           </div>
         ) : pendingReports.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '24px 0', color: '#86868b', fontSize: 14 }}>No reports filed yet</div>
+          <div style={{ textAlign: 'center', padding: '24px 0', color: 'var(--color-text-secondary)', fontSize: 14 }}>No reports filed yet</div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 12 }}>
             {pendingReports.map((report: Report) => (
               <div key={report.id} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: isMobile ? '10px 12px' : '12px 14px', borderRadius: 12, background: '#f5f5f7' }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#0071e3', flexShrink: 0 }} />
-                <div style={{ flex: 1, fontSize: isMobile ? 13 : 14, color: '#1d1d1f' }}>{report.description || report.type || 'Report'}</div>
-                <div style={{ fontSize: 11, color: '#86868b', flexShrink: 0 }}>{report.created_at || 'Recently'}</div>
+                <div style={{ flex: 1, fontSize: isMobile ? 13 : 14, color: 'var(--color-text-primary)' }}>{report.description || report.type || 'Report'}</div>
+                <div style={{ fontSize: 11, color: 'var(--color-text-secondary)', flexShrink: 0 }}>{report.created_at || 'Recently'}</div>
               </div>
             ))}
           </div>

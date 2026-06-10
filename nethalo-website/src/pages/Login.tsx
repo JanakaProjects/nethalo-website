@@ -37,28 +37,28 @@ export const Login: React.FC = () => {
       <div style={{ maxWidth: 400, width: '100%', background: '#ffffff', borderRadius: 16, padding: isMobile ? 24 : 40, border: '1px solid #d2d2d7' }}>
         <div style={{ textAlign: 'center', marginBottom: isMobile ? 24 : 32 }}>
           <Shield size={isMobile ? 32 : 40} style={{ color: '#0071e3', marginBottom: 12 }} />
-          <h1 style={{ fontSize: isMobile ? 22 : 24, fontWeight: 700, color: '#1d1d1f', marginBottom: 4 }}>Welcome back</h1>
+          <h1 style={{ fontSize: isMobile ? 22 : 24, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Welcome back</h1>
           <p style={{ fontSize: isMobile ? 14 : 14, color: '#6e6e73' }}>Sign in to your NETHALO account</p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: 16 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1d1d1f', marginBottom: 6 }} htmlFor="email">Email</label>
+            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }} htmlFor="email">Email</label>
             <div style={{ position: 'relative' }}>
-              <Mail size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: '#86868b' }} />
+              <Mail size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-secondary)' }} />
               <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@email.com" required
-                style={{ width: '100%', height: 44, padding: '0 14px 0 40px', borderRadius: 10, border: '1px solid #d2d2d7', fontSize: 14, background: '#f5f5f7', color: '#1d1d1f', outline: 'none' }}
+                style={{ width: '100%', height: 44, padding: '0 14px 0 40px', borderRadius: 10, border: '1px solid #d2d2d7', fontSize: 14, background: '#f5f5f7', color: 'var(--color-text-primary)', outline: 'none' }}
                 onFocus={e => e.target.style.borderColor = '#0071e3'}
                 onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
             </div>
           </div>
 
           <div style={{ marginBottom: 8 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1d1d1f', marginBottom: 6 }} htmlFor="password">Password</label>
+            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }} htmlFor="password">Password</label>
             <div style={{ position: 'relative' }}>
-              <Lock size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: '#86868b' }} />
+              <Lock size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-secondary)' }} />
               <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter your password" required
-                style={{ width: '100%', height: 44, padding: '0 14px 0 40px', borderRadius: 10, border: '1px solid #d2d2d7', fontSize: 14, background: '#f5f5f7', color: '#1d1d1f', outline: 'none' }}
+                style={{ width: '100%', height: 44, padding: '0 14px 0 40px', borderRadius: 10, border: '1px solid #d2d2d7', fontSize: 14, background: '#f5f5f7', color: 'var(--color-text-primary)', outline: 'none' }}
                 onFocus={e => e.target.style.borderColor = '#0071e3'}
                 onBlur={e => e.target.style.borderColor = '#d2d2d7'} />
             </div>
@@ -88,7 +88,7 @@ export const Login: React.FC = () => {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 12, fontSize: 14 }}>
-          <Link to="/dashboard/student" style={{ color: '#86868b', textDecoration: 'none' }}>Continue as Guest</Link>
+          <Link to="/dashboard/student" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}>Continue as Guest</Link>
         </div>
       </div>
     </div>

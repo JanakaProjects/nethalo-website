@@ -45,13 +45,13 @@ export const Testimonials: React.FC = () => {
                   {'\u2605'.repeat(5)}
                 </div>
                 <p style={{
-                  fontSize: 15, color: '#1d1d1f', lineHeight: 1.6, marginBottom: 16,
+                  fontSize: 15, color: 'var(--color-text-primary)', lineHeight: 1.6, marginBottom: 16,
                   fontStyle: 'italic',
                 }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div style={{ fontSize: 13, color: '#6e6e73' }}>
-                  <span style={{ fontWeight: 600, color: '#1d1d1f' }}>{t.name}</span>
+                  <span style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>{t.name}</span>
                   {' \u2014 '}{t.role}
                 </div>
               </div>

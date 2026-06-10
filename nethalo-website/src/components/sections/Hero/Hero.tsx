@@ -102,7 +102,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontSize: 'clamp(32px, 5.5vw, 56px)', fontWeight: 700, letterSpacing: '-0.015em',
-            lineHeight: 1.05, color: '#1d1d1f', maxWidth: 800, marginBottom: 16,
+            lineHeight: 1.05, color: 'var(--color-text-primary)', maxWidth: 800, marginBottom: 16,
           }}
         >
           {hero.headline}

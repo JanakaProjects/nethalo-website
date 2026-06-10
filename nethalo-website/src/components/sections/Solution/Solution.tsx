@@ -48,7 +48,7 @@ export const Solution: React.FC = () => {
                   }}>
                     {Icon && <Icon size={22} style={{ color: '#e91e8c' }} />}
                   </div>
-                  <h3 style={{ fontSize: 17, fontWeight: 600, color: '#1d1d1f', marginBottom: 8 }}>
+                  <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 8 }}>
                     {f.title}
                   </h3>
                   <p style={{ fontSize: 14, color: '#6e6e73', lineHeight: 1.5, maxWidth: 300, margin: '0 auto' }}>

@@ -48,11 +48,11 @@ export const Pricing: React.FC = () => {
                 flexDirection: 'column',
                 minHeight: 420,
               }}>
-                <h3 style={{ fontSize: 17, fontWeight: 600, color: '#1d1d1f', marginBottom: 4 }}>
+                <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 4 }}>
                   {plan.name}
                 </h3>
                 <div style={{ marginBottom: 8 }}>
-                  <span style={{ fontSize: 36, fontWeight: 700, color: '#1d1d1f', letterSpacing: '-0.02em' }}>
+                  <span style={{ fontSize: 36, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.02em' }}>
                     {plan.price}
                   </span>
                   {plan.period && <span style={{ fontSize: 14, color: '#6e6e73', marginLeft: 4 }}>{plan.period}</span>}
@@ -77,7 +77,7 @@ export const Pricing: React.FC = () => {
                     fontSize: 14, fontWeight: 600, cursor: 'pointer',
                     border: 'none', minHeight: 44, transition: 'all 0.2s',
                     background: plan.highlighted ? '#0071e3' : '#f5f5f7',
-                    color: plan.highlighted ? 'white' : '#1d1d1f',
+                    color: plan.highlighted ? 'white' : 'var(--color-text-primary)',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
