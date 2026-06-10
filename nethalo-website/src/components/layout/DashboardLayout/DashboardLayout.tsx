@@ -46,7 +46,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           <span style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
         </Link>
         {isMobile && (
-          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }} aria-label="Close menu">
+          <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: '#f5f5f7', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#86868b', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
             <X size={20} />
           </button>
         )}
@@ -56,7 +56,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           const Icon = item.icon;
           const active = isActive(item.href);
           return (
-            <button key={item.label} onClick={() => handleNav(item.href)}
+            <button key={item.label} onClick={() => handleNav(item.href)} role="link" aria-current={active ? 'page' : undefined}
               style={{
                 display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '14px 12px' : '12px 14px',
                 borderRadius: 10, fontSize: isMobile ? 15 : 14, fontWeight: 500, textDecoration: 'none', width: '100%',
@@ -85,7 +85,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
             <div style={{ fontSize: 12, color: 'var(--color-text-muted)', textTransform: 'capitalize' }}>{user?.role}</div>
           </div>
         </div>
-        <button onClick={handleLogout}
+        <button onClick={handleLogout} type="button" aria-label="Log out"
           style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isMobile ? '14px 12px' : '12px 14px', borderRadius: 10, fontSize: 14, fontWeight: 500, color: 'var(--color-text-secondary)', border: 'none', background: 'none', cursor: 'pointer', width: '100%', transition: 'all 0.2s', minHeight: 44 }}
           onMouseEnter={e => { e.currentTarget.style.background = '#fff2f0'; e.currentTarget.style.color = '#d32f2f'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}>
@@ -105,8 +105,8 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
       )}
 
       {isMobile && sidebarOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 40, display: 'flex' }}>
-          <div style={{ flex: 1, background: 'rgba(0,0,0,0.4)' }} onClick={() => setSidebarOpen(false)} />
+        <div style={{ position: 'fixed', inset: 0, zIndex: 40, display: 'flex' }} role="dialog" aria-modal="true">
+          <div style={{ flex: 1, background: 'rgba(0,0,0,0.4)' }} onClick={() => setSidebarOpen(false)} aria-hidden="true" />
           <div style={{ width: 280, maxWidth: '80vw', background: 'var(--color-bg-elevated)', height: '100%', overflowY: 'auto', boxShadow: '4px 0 24px rgba(0,0,0,0.15)' }}>
             {sidebarContent}
           </div>

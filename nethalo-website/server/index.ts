@@ -17,6 +17,7 @@ import adminRoutes from './routes/admin.js';
 import { Request, Response } from 'express';
 import { getDb } from './db.js';
 import { setupSwagger } from './swagger.js';
+import { startWeeklyDigest } from './services/digest.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -103,6 +104,7 @@ app.use((_req, res) => {
 });
 
 initDb();
+startWeeklyDigest();
 httpServer.listen(PORT, () => {
   console.log(`NETHALO backend running on http://localhost:${PORT}`);
 });
