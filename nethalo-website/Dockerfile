@@ -3,9 +3,15 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
+# Copy source
 COPY package*.json ./
-RUN npm ci
+COPY tsconfig.json ./
+
+# Install dependencies (allow optional)
+RUN npm ci --ignore-scripts || npm install --ignore-scripts
 
 # Copy source and build
 COPY . .
@@ -16,9 +22,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install production dependencies only
+# Install build tools for bcryptjs
+RUN apk add --no-cache python3 make g++
+
+# Copy package files
 COPY package*.json ./
-RUN npm ci --only=production
+
+# Install production dependencies
+RUN npm install --omit=dev --ignore-scripts
 
 # Copy built assets from builder
 COPY --from=builder /app/dist ./dist
