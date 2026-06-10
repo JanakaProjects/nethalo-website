@@ -11,7 +11,7 @@ const sidebarItems = [
   { icon: FileText, label: 'Reports', href: '/reports' },
   { icon: Link2, label: 'Connect', href: '/connect' },
   { icon: Settings, label: 'Settings', href: '/settings' },
-  { icon: HelpCircle, label: 'Help', href: '#' },
+  { icon: HelpCircle, label: 'Help', href: '/help' },
 ];
 
 export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

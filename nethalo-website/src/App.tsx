@@ -15,6 +15,7 @@ import { Connect } from './pages/Connect';
 import { Journal } from './pages/Journal';
 import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
+import { Help } from './pages/Help';
 import { NotFound } from './pages/NotFound';
 import { PrivateRoute } from './components/auth/Guards';
 import './styles/tokens.css';
@@ -64,6 +65,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/reports" element={<PrivateRoute><PageWrapper><Reports /></PageWrapper></PrivateRoute>} />
         <Route path="/connect" element={<PrivateRoute><PageWrapper><Connect /></PageWrapper></PrivateRoute>} />
         <Route path="/settings" element={<PrivateRoute><PageWrapper><Settings /></PageWrapper></PrivateRoute>} />
+        <Route path="/help" element={<PrivateRoute><PageWrapper><Help /></PageWrapper></PrivateRoute>} />
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>
     </AnimatePresence>

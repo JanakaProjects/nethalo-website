@@ -89,6 +89,69 @@ const StudentDashboard: React.FC = () => {
         <p style={{ fontSize: isMobile ? 14 : 16, color: '#86868b', marginTop: 6 }}>Here&apos;s your current safety overview</p>
       </div>
 
+      {/* Getting Started / Help Guide Card */}
+      <div style={{
+        padding: isMobile ? '20px' : '24px',
+        borderRadius: 16,
+        border: '1px solid var(--color-border-light)',
+        background: 'var(--color-bg-elevated)',
+        marginBottom: isMobile ? 20 : 28,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 10,
+            background: 'var(--color-brand-shield-light)', color: 'var(--color-brand-shield)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0, marginTop: 2,
+          }}>
+            <Shield size={22} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h2 style={{
+              fontSize: isMobile ? 15 : 17,
+              fontWeight: 700,
+              color: 'var(--color-text-primary)',
+              margin: '0 0 6px 0',
+              letterSpacing: '-0.01em',
+            }}>
+              Getting Started
+            </h2>
+            <p style={{
+              fontSize: isMobile ? 13 : 14,
+              color: 'var(--color-text-secondary)',
+              lineHeight: 1.55,
+              margin: '0 0 12px 0',
+            }}>
+              Welcome to your Safety Dashboard. The <strong>Safety Score</strong> shows how safe your online
+              environment is. 🛡️ Use <strong>Quick Actions</strong> to report concerns, talk to someone, view your
+              reports, or write in your private journal. The <strong>Weekly Activity</strong> chart tracks flagged
+              interactions, and <strong>Recent Activity</strong> keeps you updated on what is happening.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              <a href="/help" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '8px 16px', borderRadius: 10,
+                background: 'var(--color-brand-shield)', color: '#ffffff',
+                fontSize: 13, fontWeight: 600, textDecoration: 'none',
+                transition: 'background 0.2s',
+              }} onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'}>
+                View Full Help Guide
+              </a>
+              <button onClick={() => { /* scroll to quick actions */ }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  padding: '8px 16px', borderRadius: 10,
+                  background: 'none', color: 'var(--color-brand-shield)',
+                  fontSize: 13, fontWeight: 600, textDecoration: 'none',
+                  border: '1px solid var(--color-border-medium)', cursor: 'pointer',
+                }}>
+                Explore Quick Actions
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <StaggerContainer>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(220px, 1fr))', gap: isMobile ? 12 : 16, marginBottom: isMobile ? 24 : 32 }}>
           <FadeInUp delay={0}>
@@ -150,7 +213,12 @@ const StudentDashboard: React.FC = () => {
               })}
             </div>
           ) : (
-            <div style={{ fontSize: 14, color: '#86868b', textAlign: 'center', padding: 20 }}>No data this week</div>
+            <div style={{ fontSize: 14, color: '#86868b', textAlign: 'center', padding: '20px 0' }}>
+              <div style={{ marginBottom: 6 }}>No activity recorded this week.</div>
+              <a href="/help" style={{ fontSize: 13, color: '#0071e3', textDecoration: 'none', fontWeight: 500 }}>
+                Learn how activity tracking works →
+              </a>
+            </div>
           )}
         </div>
 
@@ -166,6 +234,11 @@ const StudentDashboard: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f5f5f7' }}>
+            <a href="/help" style={{ fontSize: 13, color: '#0071e3', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              Learn more about activity tracking →
+            </a>
           </div>
         </div>
       </div>
