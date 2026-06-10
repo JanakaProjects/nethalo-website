@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Logo } from '../../ui/Logo/Logo';
 import { MaMo } from '../../ui/MaMo/MaMo';
 import { DeviceMockups } from '../../ui/DeviceMockups/DeviceMockups';
 import { hero } from '../../../data/hero';
@@ -87,15 +86,6 @@ export const Hero: React.FC = () => {
       ))}
 
       <motion.div style={{ position: 'relative', zIndex: 2 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ marginBottom: 24 }}
-        >
-          <Logo variant="mark" size="xl" />
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
