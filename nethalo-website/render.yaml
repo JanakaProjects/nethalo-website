@@ -1,13 +1,10 @@
 services:
   - type: web
-    name: nethalo
-    runtime: node
-    buildCommand: npm run build
-    startCommand: npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 3001
-      - key: DATABASE_URL
-        value: /data/nethalo.db
+    runtime: static
+    name: nethalo-website
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
