@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { Logo } from '../../ui/Logo/Logo';
+import { useAppTheme } from '../../../lib/theme';
 
 interface DropdownItem {
   label: string;
@@ -27,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
+  const { theme, toggleTheme } = useAppTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -163,6 +165,19 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
         {!isAuthPage && (
           <div style={{ display: 'none', alignItems: 'center', gap: 10, zIndex: 1 }} className="nav-actions-desktop">
             <button
+              onClick={toggleTheme}
+              style={{
+                width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer',
+                transition: 'color 0.2s, background 0.2s', minHeight: 44,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-text-primary)'; e.currentTarget.style.background = 'var(--color-bg-hover)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-secondary)'; e.currentTarget.style.background = 'none'; }}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <button
               onClick={() => { navigate('/login'); setMobileOpen(false); }}
               style={{
                 fontSize: 12, fontWeight: 400, color: 'var(--color-text-secondary)', cursor: 'pointer',
@@ -259,6 +274,18 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
           ))}
           {!isAuthPage && (
             <div style={{ width: '100%', maxWidth: 400, padding: '8px 24px 0', textAlign: 'center', marginTop: 8 }}>
+              <button
+                onClick={() => { toggleTheme(); setMobileOpen(false); }}
+                style={{
+                  width: '100%', padding: '14px', borderRadius: 9999,
+                  fontSize: 16, fontWeight: 500, color: 'var(--color-text-primary)',
+                  background: 'var(--color-bg-secondary)', border: 'none', cursor: 'pointer',
+                  minHeight: 44, marginBottom: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                }}
+              >
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </button>
               <button
                 onClick={() => handleNavClick('/login')}
                 style={{
