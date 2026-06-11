@@ -4,9 +4,10 @@ import { useAuth } from '../../lib/auth';
 import type { UserRole } from '../../lib/mockData';
 
 export const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isGuest, isLoading } = useAuth();
   if (isLoading) return null;
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
+  if (!isAuthenticated || isGuest) return <Navigate to="/login" replace />;
+  return <>{children}</>;
 };
 
 export const RoleRoute: React.FC<{ children: React.ReactNode; roles: UserRole[] }> = ({ children, roles }) => {

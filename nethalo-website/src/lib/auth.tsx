@@ -10,7 +10,9 @@ interface AuthContextType {
   signup: (data: SignupData) => Promise<void>;
   logout: () => void;
   updateUser: (data: Partial<User>) => void;
+  guestLogin: () => void;
   isAuthenticated: boolean;
+  isGuest: boolean;
   isLoading: boolean;
 }
 
@@ -100,6 +102,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('nethalo_token');
   }, []);
 
+  const guestLogin = useCallback(() => {
+    const guest: User = {
+      id: 'guest',
+      name: 'Guest',
+      email: 'guest@nethalo.com',
+      role: 'student',
+    };
+    setUser(guest);
+    setToken('guest-token');
+    localStorage.setItem('nethalo_user', JSON.stringify(guest));
+    localStorage.setItem('nethalo_token', 'guest-token');
+  }, []);
+
   const updateUser = useCallback((data: Partial<User>) => {
     setUser(prev => {
       if (!prev) return null;
@@ -110,7 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, signup, logout, updateUser, isAuthenticated: !!user, isLoading }}>
+    <AuthContext.Provider value={{ user, token, login, signup, logout, updateUser, guestLogin, isAuthenticated: !!user, isGuest: user?.id === 'guest', isLoading }}>
       {children}
     </AuthContext.Provider>
   );

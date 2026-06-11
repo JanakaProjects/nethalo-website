@@ -9,7 +9,7 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, guestLogin } = useAuth();
   const navigate = useNavigate();
   const isMobile = useIsMobile(768);
 
@@ -88,7 +88,7 @@ export const Login: React.FC = () => {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 12, fontSize: 14 }}>
-          <Link to="/dashboard/student" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none' }}>Continue as Guest</Link>
+          <button onClick={() => { guestLogin(); navigate('/dashboard/guest'); }} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, minHeight: 44 }}>Continue as Guest</button>
         </div>
       </div>
     </div>

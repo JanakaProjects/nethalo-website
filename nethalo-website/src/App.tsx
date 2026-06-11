@@ -18,6 +18,7 @@ import { Settings } from './pages/Settings';
 import { Help } from './pages/Help';
 import { NotFound } from './pages/NotFound';
 import { PrivateRoute } from './components/auth/Guards';
+import { GuestDashboard } from './pages/dashboard/GuestDashboard';
 import './styles/tokens.css';
 import './styles/global.css';
 import './styles/components.css';
@@ -58,6 +59,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
         <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
         <Route path="/dashboard" element={<PrivateRoute><PageWrapper><DashboardRedirect /></PageWrapper></PrivateRoute>} />
+        <Route path="/dashboard/guest" element={<PageWrapper><GuestDashboard /></PageWrapper>} />
         <Route path="/dashboard/student" element={<PrivateRoute><PageWrapper><StudentDashboard /></PageWrapper></PrivateRoute>} />
         <Route path="/dashboard/parent" element={<PrivateRoute><PageWrapper><ParentDashboard /></PageWrapper></PrivateRoute>} />
         <Route path="/dashboard/admin" element={<PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute>} />
