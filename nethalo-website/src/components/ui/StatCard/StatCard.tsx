@@ -13,13 +13,23 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ icon, label, value, trend, trendUp, color, isMobile, isLoading }) => {
+  const shimmerStyle: React.CSSProperties = {
+    background: 'linear-gradient(90deg, var(--color-bg-tertiary) 25%, var(--color-bg-secondary) 50%, var(--color-bg-tertiary) 75%)',
+    backgroundSize: '200% 100%',
+    animation: 'shimmer 1.5s infinite',
+    borderRadius: 6,
+  };
+
   if (isLoading) {
     return (
       <div style={{ background: 'var(--color-bg-elevated)', borderRadius: 16, padding: isMobile ? '16px' : '24px', border: '1px solid var(--color-border-light)' }}>
-        <div style={{ width: isMobile ? 36 : 44, height: isMobile ? 36 : 44, borderRadius: 10, background: 'var(--color-bg-tertiary)' }} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ width: isMobile ? 36 : 44, height: isMobile ? 36 : 44, borderRadius: 10, ...shimmerStyle }} />
+          <div style={{ width: 40, height: 16, borderRadius: 4, ...shimmerStyle }} />
+        </div>
         <div style={{ marginTop: isMobile ? 12 : 20 }}>
-          <div style={{ width: '60%', height: isMobile ? 22 : 28, borderRadius: 6, background: 'var(--color-bg-tertiary)' }} />
-          <div style={{ width: '40%', height: 14, borderRadius: 4, background: 'var(--color-bg-tertiary)', marginTop: 8 }} />
+          <div style={{ width: '60%', height: isMobile ? 22 : 28, borderRadius: 6, ...shimmerStyle }} />
+          <div style={{ width: '40%', height: 14, borderRadius: 4, marginTop: 8, ...shimmerStyle }} />
         </div>
       </div>
     );

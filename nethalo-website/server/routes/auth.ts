@@ -76,4 +76,41 @@ router.get('/me', (req: Request, res: Response) => {
   res.json({ user });
 });
 
+// POST /api/auth/reset-password
+router.post('/reset-password', (req: Request, res: Response) => {
+  const { email } = req.body;
+  if (!email) {
+    res.status(400).json({ error: 'Email required' });
+    return;
+  }
+  const db = getDb();
+  const user = db.prepare('SELECT id FROM users WHERE email = ?').get(email) as any;
+  if (!user) {
+    res.status(404).json({ error: 'Account not found' });
+    return;
+  }
+  const resetToken = require('crypto').randomBytes(32).toString('hex');
+  const expires = Date.now() + 3600000;
+  db.prepare('UPDATE users SET reset_token = ?, reset_expires = ? WHERE id = ?').run(resetToken, expires, user.id);
+  res.json({ message: 'Reset link sent to your email' });
+});
+
+// POST /api/auth/verify-email
+router.post('/verify-email', (req: Request, res: Response) => {
+  const { email } = req.body;
+  if (!email) {
+    res.status(400).json({ error: 'Email required' });
+    return;
+  }
+  const db = getDb();
+  const user = db.prepare('SELECT id FROM users WHERE email = ?').get(email) as any;
+  if (!user) {
+    res.status(404).json({ error: 'Account not found' });
+    return;
+  }
+  const verifyToken = require('crypto').randomBytes(32).toString('hex');
+  db.prepare('UPDATE users SET verify_token = ? WHERE id = ?').run(verifyToken, user.id);
+  res.json({ message: 'Verification email sent' });
+});
+
 export default router;

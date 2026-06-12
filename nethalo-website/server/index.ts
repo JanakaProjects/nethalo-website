@@ -14,6 +14,8 @@ import reportRoutes from './routes/reports.js';
 import accountRoutes from './routes/accounts.js';
 import journalRoutes from './routes/journal.js';
 import adminRoutes from './routes/admin.js';
+import logRoutes, { logActivity } from './routes/logs.js';
+import moderationRoutes from './routes/moderation.js';
 import { Request, Response } from 'express';
 import { getDb } from './db.js';
 import { setupSwagger } from './swagger.js';
@@ -65,6 +67,8 @@ app.use('/api/reports', authMiddleware, reportRoutes);
 app.use('/api/accounts', authMiddleware, accountRoutes);
 app.use('/api/journal', authMiddleware, journalRoutes);
 app.use('/api/admin', authMiddleware, adminRoutes);
+app.use('/api/logs', authMiddleware, logRoutes);
+app.use('/api/moderation', authMiddleware, moderationRoutes);
 
 // Export CSV route
 app.get('/api/export/threats', authMiddleware, (req: Request, res: Response) => {

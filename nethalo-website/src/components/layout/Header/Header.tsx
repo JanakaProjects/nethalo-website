@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { Logo } from '../../ui/Logo/Logo';
 import { useAppTheme } from '../../../lib/theme';
+import { NotificationBell } from '../../ui/NotificationBell/NotificationBell';
 
 interface DropdownItem {
   label: string;
@@ -40,6 +41,10 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    if (mobileOpen) setMobileOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!mobileOpen) setOpenDropdown(null);
@@ -164,6 +169,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
         {/* Desktop Actions */}
         {!isAuthPage && (
           <div style={{ display: 'none', alignItems: 'center', gap: 10, zIndex: 1 }} className="nav-actions-desktop">
+            <NotificationBell />
             <button
               onClick={toggleTheme}
               style={{

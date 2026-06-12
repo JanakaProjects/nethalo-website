@@ -25,7 +25,11 @@ export function initDb() {
       age INTEGER,
       child_name TEXT,
       admin_role TEXT,
-      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      reset_token TEXT,
+      reset_expires INTEGER,
+      verify_token TEXT,
+      email_verified INTEGER DEFAULT 0
     )
   `);
 

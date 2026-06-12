@@ -13,6 +13,12 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile(768);
 
+  const defaultAccounts = [
+    { role: 'Student', email: 'student@nationalhatecrime.com', password: 'password123' },
+    { role: 'Parent', email: 'parent@nationalhatecrime.com', password: 'password123' },
+    { role: 'Admin', email: 'admin@nationalhatecrime.com', password: 'password123' },
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -26,7 +32,7 @@ export const Login: React.FC = () => {
           navigate(`/dashboard/${user.role}`, { replace: true });
         }
       } else {
-        setError('Invalid email or password. Try student@National Hate Crime.com / password');
+        setError('Invalid email or password. Try student@nationalhatecrime.com / password123');
       }
     } catch { setError('Something went wrong'); }
     setLoading(false);
@@ -65,7 +71,7 @@ export const Login: React.FC = () => {
           </div>
 
           <div style={{ textAlign: 'right', marginBottom: 24 }}>
-            <a href="#" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none' }} onClick={e => { e.preventDefault(); alert('Mock: Reset link sent to your email'); }}>Forgot password?</a>
+            <a href="/forgot-password" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none' }} onClick={e => { e.preventDefault(); navigate('/forgot-password'); }}>Forgot password?</a>
           </div>
 
           {error && (
@@ -89,6 +95,21 @@ export const Login: React.FC = () => {
 
         <div style={{ textAlign: 'center', marginTop: 12, fontSize: 14 }}>
           <button onClick={() => { guestLogin(); navigate('/dashboard/guest'); }} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, minHeight: 44 }}>Continue as Guest</button>
+        </div>
+
+        <div style={{ marginTop: 24, padding: 14, borderRadius: 10, border: '1px solid var(--color-border-light)', background: 'var(--color-bg-secondary)' }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-muted)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Demo Accounts</p>
+          {defaultAccounts.map((acc, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, padding: '6px 0', borderBottom: i < defaultAccounts.length - 1 ? '1px solid var(--color-border-light)' : 'none' }}>
+              <span style={{ color: 'var(--color-text-secondary)' }}>{acc.role}</span>
+              <button onClick={() => { setEmail(acc.email); setPassword(acc.password); }}
+                style={{ color: 'var(--color-brand-shield)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 500 }}
+                title={`Click to fill: ${acc.email} / ${acc.password}`}>
+                {acc.email}
+              </button>
+            </div>
+          ))}
+          <p style={{ fontSize: 11, color: 'var(--color-text-muted)', marginTop: 8 }}>Click any email to auto-fill. Password for all: <strong>password123</strong></p>
         </div>
       </div>
     </div>

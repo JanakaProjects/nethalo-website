@@ -19,6 +19,8 @@ import { Help } from './pages/Help';
 import { NotFound } from './pages/NotFound';
 import { PrivateRoute } from './components/auth/Guards';
 import { GuestDashboard } from './pages/dashboard/GuestDashboard';
+import { ErrorBoundary } from './components/ui/ErrorBoundary/ErrorBoundary';
+import { PasswordReset } from './pages/PasswordReset';
 import './styles/tokens.css';
 import './styles/global.css';
 import './styles/components.css';
@@ -57,6 +59,7 @@ const AnimatedRoutes: React.FC = () => {
           </PageWrapper>
         } />
         <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path="/forgot-password" element={<PageWrapper><PasswordReset /></PageWrapper>} />
         <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
         <Route path="/dashboard" element={<PrivateRoute><PageWrapper><DashboardRedirect /></PageWrapper></PrivateRoute>} />
         <Route path="/dashboard/guest" element={<PageWrapper><GuestDashboard /></PageWrapper>} />
@@ -76,10 +79,12 @@ const AnimatedRoutes: React.FC = () => {
 
 export const App: React.FC = () => (
   <HashRouter>
-    <ThemeProvider>
-      <AuthProvider>
+  <ThemeProvider>
+    <AuthProvider>
+      <ErrorBoundary>
         <AnimatedRoutes />
-      </AuthProvider>
-    </ThemeProvider>
+      </ErrorBoundary>
+    </AuthProvider>
+  </ThemeProvider>
   </HashRouter>
 );
