@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import type { User, UserRole } from './mockData';
 
-const API = '/api';
+const API = import.meta.env.VITE_API_URL || '/api';
 
 interface AuthContextType {
   user: User | null;

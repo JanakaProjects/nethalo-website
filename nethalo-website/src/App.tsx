@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AuthProvider, useAuth } from './lib/auth';
 import { ThemeProvider } from './lib/theme';
@@ -75,11 +75,11 @@ const AnimatedRoutes: React.FC = () => {
 };
 
 export const App: React.FC = () => (
-  <BrowserRouter>
+  <HashRouter>
     <ThemeProvider>
       <AuthProvider>
         <AnimatedRoutes />
       </AuthProvider>
     </ThemeProvider>
-  </BrowserRouter>
+  </HashRouter>
 );
