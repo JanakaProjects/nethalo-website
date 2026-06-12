@@ -1,5 +1,5 @@
 {
-  "name": "nethalo-website",
+  "name": "national-hate-crime-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -55,3 +55,5 @@
     "ws": "^8.21.0"
   }
 }
+
+

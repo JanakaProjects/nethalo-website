@@ -1,9 +1,9 @@
-Build a complete backend for the NETHALO anti-cyberbullying app. The project is at C:\Users\J AI\Desktop\Sylicon Projects\Anti-Cyberbullying (OpenCode)\nethalo-website
+Build a complete backend for the National Hate Crime anti-cyberbullying app. The project is at C:\Users\J AI\Desktop\Sylicon Projects\Anti-Cyberbullying (OpenCode)\national-hate-crime-website
 
 ## CURRENT STATE
 - Frontend-only React + Vite SPA
 - All data is mock (src/lib/mockData.ts)
-- Auth is in-memory mock (src/lib/auth.tsx) with hardcoded users: student@nethalo.com / parent@nethalo.com / admin@nethalo.com (password: 'password' for all)
+- Auth is in-memory mock (src/lib/auth.tsx) with hardcoded users: student@National Hate Crime.com / parent@National Hate Crime.com / admin@National Hate Crime.com (password: 'password' for all)
 - Dashboard pages (StudentDashboard, ParentDashboard, AdminDashboard) and Connect, Settings all use mock data
 
 ## WHAT TO BUILD
@@ -25,7 +25,7 @@ Express server on port 3001 that:
 
 #### server/db.ts
 SQLite database setup using better-sqlite3:
-- Store DB at ./nethalo.db
+- Store DB at ./National Hate Crime.db
 - On init, create these tables (IF NOT EXISTS):
 
 1. users:
@@ -93,7 +93,7 @@ SQLite database setup using better-sqlite3:
 - GET /api/auth/me — requires JWT, returns current user data
 - PUT /api/auth/me — requires JWT, updates name/email/school/age
 - The JWT should contain: { userId: user.id, role: user.role } and expire in 7 days
-- JWT secret from process.env.JWT_SECRET or fallback to 'nethalo-dev-secret-key-change-in-production'
+- JWT secret from process.env.JWT_SECRET or fallback to 'national-hate-crime-dev-secret-key-change-in-production'
 - On signup, also seed the 6 default connected_accounts for the new user (all connected=0)
 
 ### 4. server/routes/dashboard.ts
@@ -136,9 +136,9 @@ JWT required:
 
 ### 10. Seed data
 On server startup, check if demo users exist. If not, create them:
-- student@nethalo.com / password (role: student)
-- parent@nethalo.com / password (role: parent)
-- admin@nethalo.com / password (role: admin)
+- student@National Hate Crime.com / password (role: student)
+- parent@National Hate Crime.com / password (role: parent)
+- admin@National Hate Crime.com / password (role: admin)
 - 20 sample threats for the student
 - 3 children for the parent (Maya Thompson, Jake Thompson, Lily Thompson)
 - 10 student records for admin
@@ -157,7 +157,7 @@ Replace mock auth with real API calls:
 - On mount, if JWT exists, call GET /api/auth/me to restore session
 
 Add an API_BASE_URL constant (default: http://localhost:3001/api)
-The frontend uses fetch() for all API calls. All authenticated requests include a Bearer token from localStorage('nethalo_token').
+The frontend uses fetch() for all API calls. All authenticated requests include a Bearer token from localStorage('national-hate-crime_token').
 
 ### 13. Update src/lib/mockData.ts
 Keep the TypeScript interfaces (User, Threat, UserRole, ConnectedAccount, Child, StudentRecord, mockEvents).
@@ -180,3 +180,5 @@ KEY: Each component should call the API in a useEffect on mount, with loading st
 AFTER all edits: npm run build (ensure no TypeScript errors)
 Start the server: npx tsx server/index.ts
 Test it: The frontend should load with real data, login should work, dashboards should show API data.
+
+

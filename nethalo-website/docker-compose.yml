@@ -8,11 +8,12 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - JWT_SECRET=${JWT_SECRET:-nethalo-dev-secret-key-change-in-production}
-      - DATABASE_URL=/app/data/nethalo.db
+      - JWT_SECRET=${JWT_SECRET:-national-hate-crime-dev-secret-key-change-in-production}
+      - DATABASE_URL=/app/data/National Hate Crime.db
     volumes:
-      - nethalo_data:/app/data
+      - national-hate-crime_data:/app/data
     restart: unless-stopped
 
 volumes:
-  nethalo_data:
+  national-hate-crime_data:
+

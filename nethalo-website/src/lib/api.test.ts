@@ -7,7 +7,7 @@ describe('api', () => {
   });
 
   it('apiFetch attaches auth header when token exists', async () => {
-    localStorage.setItem('nethalo_token', 'test-token');
+    localStorage.setItem('national-hate-crime_token', 'test-token');
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ data: 'test' }),
@@ -36,3 +36,4 @@ describe('api', () => {
     await expect(apiFetch('/test')).rejects.toThrow('API error: 401 Unauthorized');
   });
 });
+

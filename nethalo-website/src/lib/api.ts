@@ -1,7 +1,7 @@
 const API = import.meta.env.VITE_API_URL || '/api';
 
 export async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
-  const token = localStorage.getItem('nethalo_token');
+  const token = localStorage.getItem('national-hate-crime_token');
   const res = await fetch(`${API}${path}`, {
     ...options,
     headers: {
@@ -156,3 +156,5 @@ export function deleteJournalEntry(id: string) {
     method: 'DELETE',
   });
 }
+
+

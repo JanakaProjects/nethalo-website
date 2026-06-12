@@ -12,8 +12,9 @@ export const features = [
 ];
 
 export const howItWorks = [
-  { step: 1, title: 'Install & Connect', body: 'Download NETHALO and connect your social accounts. Takes two minutes.' },
+  { step: 1, title: 'Install & Connect', body: 'Download National Hate Crime and connect your social accounts. Takes two minutes.' },
   { step: 2, title: 'AI Learns Your World', body: 'Our on-device AI learns what\u2019s normal for you. No data leaves your phone.' },
-  { step: 3, title: 'Real-Time Protection', body: 'NETHALO filters content across every platform. Threats are blocked instantly.' },
-  { step: 4, title: 'Stay Informed', body: 'Get weekly insights and see how NETHALO keeps you safe. Adjust anytime.' },
+  { step: 3, title: 'Real-Time Protection', body: 'National Hate Crime filters content across every platform. Threats are blocked instantly.' },
+  { step: 4, title: 'Stay Informed', body: 'Get weekly insights and see how National Hate Crime keeps you safe. Adjust anytime.' },
 ];
+

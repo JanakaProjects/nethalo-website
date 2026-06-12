@@ -23,7 +23,7 @@ export const Solution: React.FC = () => {
     <section id="features" style={{ padding: isMobile ? '64px 0' : '120px 0', background: 'var(--color-bg-primary)' }}>
       <Container>
         <FadeInUp>
-          <h2 className="section-heading">Meet NETHALO</h2>
+          <h2 className="section-heading">Meet National Hate Crime</h2>
           <p className="section-subhead">
             The first AI layer purpose-built to protect young people across every social platform.
           </p>
@@ -63,3 +63,4 @@ export const Solution: React.FC = () => {
     </section>
   );
 };
+

@@ -22,7 +22,7 @@ export const Testimonials: React.FC = () => {
         <FadeInUp>
           <h2 className="section-heading">Trusted by students, parents, and schools</h2>
           <p className="section-subhead">
-            Real stories from people whose digital lives have been transformed by NETHALO.
+            Real stories from people whose digital lives have been transformed by National Hate Crime.
           </p>
         </FadeInUp>
 
@@ -62,3 +62,4 @@ export const Testimonials: React.FC = () => {
     </section>
   );
 };
+

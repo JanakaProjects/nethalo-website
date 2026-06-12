@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'nethalo-dev-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'national-hate-crime-dev-secret-key-change-in-production';
 
 export interface AuthPayload {
   userId: string;
@@ -37,3 +37,5 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
     res.status(401).json({ error: 'Invalid or expired token' });
   }
 }
+
+

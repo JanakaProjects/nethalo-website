@@ -31,7 +31,7 @@ export const CTAFooter: React.FC = () => {
               Ready to Defend Your Digital World?
             </h2>
             <p className="section-subhead" style={{ marginBottom: 32, maxWidth: 500 }}>
-              Join thousands of students, parents, and schools already protected by NETHALO.
+              Join thousands of students, parents, and schools already protected by National Hate Crime.
             </p>
             <button onClick={() => navigate('/signup')} className="btn-primary" style={{ minWidth: 200 }}>
               Sign Up Free
@@ -47,9 +47,9 @@ export const CTAFooter: React.FC = () => {
             alignItems: 'center', justifyContent: 'space-between',
             flexWrap: 'wrap', gap: 16,
           }}>
-            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }} aria-label="NETHALO Home">
+            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }} aria-label="National Hate Crime Home">
               <Logo variant="mark" size="sm" />
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>NETHALO</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>National Hate Crime</span>
             </a>
 
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
@@ -91,3 +91,4 @@ export const CTAFooter: React.FC = () => {
     </>
   );
 };
+

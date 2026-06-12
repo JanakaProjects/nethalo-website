@@ -8,9 +8,9 @@ export interface FAQItem {
 export const faqItems: FAQItem[] = [
   {
     id: 'private-messages',
-    question: 'Does NETHALO read my private messages?',
+    question: 'Does National Hate Crime read my private messages?',
     answer:
-      'No. NETHALO uses on-device processing for the majority of its analysis. Your personal conversations stay on your phone. We only receive anonymised flags for severe safety threats that require human intervention.',
+      'No. National Hate Crime uses on-device processing for the majority of its analysis. Your personal conversations stay on your phone. We only receive anonymised flags for severe safety threats that require human intervention.',
     category: 'privacy',
   },
   {
@@ -24,12 +24,12 @@ export const faqItems: FAQItem[] = [
     id: 'supported-apps',
     question: 'Which apps are supported?',
     answer:
-      'NETHALO currently supports Instagram, TikTok, and Discord on iOS and Android. We are actively working on Snapchat and WhatsApp integration for a future release.',
+      'National Hate Crime currently supports Instagram, TikTok, and Discord on iOS and Android. We are actively working on Snapchat and WhatsApp integration for a future release.',
     category: 'technical',
   },
   {
     id: 'free',
-    question: 'Is NETHALO free for students?',
+    question: 'Is National Hate Crime free for students?',
     answer:
       'Yes. The core Student Guard features are completely free for anyone with a valid student email address. Advanced Parental Insight features require a subscription.',
     category: 'pricing',
@@ -50,7 +50,7 @@ export const faqItems: FAQItem[] = [
   },
   {
     id: 'school-integration',
-    question: 'Can my school use NETHALO?',
+    question: 'Can my school use National Hate Crime?',
     answer:
       'Yes. We offer institutional plans with a dedicated dashboard for safeguarding teams. The dual-mode system ensures school counsellors see relevant data during school hours, while parents take over at home.',
     category: 'technical',

@@ -14,7 +14,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>(() => {
-    const stored = localStorage.getItem('nethalo-theme') as Theme | null;
+    const stored = localStorage.getItem('national-hate-crime-theme') as Theme | null;
     if (stored) return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
@@ -23,7 +23,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('nethalo-theme', theme);
+    localStorage.setItem('national-hate-crime-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => setThemeState(prev => prev === 'dark' ? 'light' : 'dark');
@@ -41,3 +41,5 @@ export const useAppTheme = () => {
   if (!ctx) throw new Error('useAppTheme must be used within ThemeProvider');
   return ctx;
 };
+
+

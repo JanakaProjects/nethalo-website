@@ -21,7 +21,7 @@ export const MaMo: React.FC<MaMoProps> = ({ pose = 'hero', size = 80, className 
 
   return (
     <div className={className} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width={size} height={size} role="img" aria-label="Ma-Mo, the NETHALO guardian dragon">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width={size} height={size} role="img" aria-label="Ma-Mo, the National Hate Crime guardian dragon">
         <ellipse cx="100" cy="115" rx="45" ry="50" fill={c.body} />
         <ellipse cx="100" cy="65" rx="35" ry="32" fill="white" />
         <ellipse cx="85" cy="60" rx="8" ry="10" fill="#1a1a2e" />
@@ -41,3 +41,4 @@ export const MaMo: React.FC<MaMoProps> = ({ pose = 'hero', size = 80, className 
     </div>
   );
 };
+

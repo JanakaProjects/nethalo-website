@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'NETHALO API',
+      title: 'National Hate Crime API',
       version: '1.0.0',
       description: 'Anti-cyberbullying platform API',
     },

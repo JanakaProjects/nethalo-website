@@ -1,7 +1,7 @@
 # IMPROVEMENT: Wire all dashboards to the real backend API
 
 ## Context
-NETHALO is a React/TypeScript SPA with an Express/SQLite backend. The backend is fully functional on port 3001 with these endpoints:
+National Hate Crime is a React/TypeScript SPA with an Express/SQLite backend. The backend is fully functional on port 3001 with these endpoints:
 - POST /api/auth/login, POST /api/auth/signup, GET /api/auth/me
 - GET /api/dashboard/stats (returns { safeScore, totalThreats, blockedThreats, weeklyTrend[], recentActivity[] })
 - GET /api/threats?userId=X (returns threats with id, type, severity, message, platform, timestamp, status)
@@ -92,3 +92,4 @@ Move the duplicate inline StatCard from all three dashboards into this shared fi
 - Preserve motion animations (StaggerContainer, FadeInUp)
 - NO mockData.ts imports in dashboard files after changes
 - Build must pass with `npm run build`
+

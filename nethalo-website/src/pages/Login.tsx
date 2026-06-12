@@ -20,13 +20,13 @@ export const Login: React.FC = () => {
     try {
       const ok = await login(email, password);
       if (ok) {
-        const stored = localStorage.getItem('nethalo_user');
+        const stored = localStorage.getItem('national-hate-crime_user');
         if (stored) {
           const user = JSON.parse(stored);
           navigate(`/dashboard/${user.role}`, { replace: true });
         }
       } else {
-        setError('Invalid email or password. Try student@nethalo.com / password');
+        setError('Invalid email or password. Try student@National Hate Crime.com / password');
       }
     } catch { setError('Something went wrong'); }
     setLoading(false);
@@ -38,7 +38,7 @@ export const Login: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: isMobile ? 24 : 32 }}>
           <Shield size={isMobile ? 32 : 40} style={{ color: 'var(--color-brand-shield)', marginBottom: 12 }} />
           <h1 style={{ fontSize: isMobile ? 22 : 24, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Welcome back</h1>
-          <p style={{ fontSize: isMobile ? 14 : 14, color: 'var(--color-text-muted)' }}>Sign in to your NETHALO account</p>
+          <p style={{ fontSize: isMobile ? 14 : 14, color: 'var(--color-text-muted)' }}>Sign in to your National Hate Crime account</p>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -94,3 +94,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
+

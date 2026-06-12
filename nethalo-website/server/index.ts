@@ -106,7 +106,7 @@ app.use((_req, res) => {
 initDb();
 startWeeklyDigest();
 httpServer.listen(PORT, () => {
-  console.log(`NETHALO backend running on http://localhost:${PORT}`);
+  console.log(`National Hate Crime backend running on http://localhost:${PORT}`);
 });
 
 export default app;

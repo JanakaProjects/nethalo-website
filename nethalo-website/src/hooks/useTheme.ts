@@ -13,7 +13,7 @@ export function useTheme(): UseThemeReturn {
   const [mounted, setMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'dark';
-    const stored = localStorage.getItem('nethalo-theme') as Theme | null;
+    const stored = localStorage.getItem('national-hate-crime-theme') as Theme | null;
     if (stored) return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
@@ -27,7 +27,7 @@ export function useTheme(): UseThemeReturn {
     root.setAttribute('data-theme', theme);
     if (theme === 'dark') root.classList.add('dark');
     else root.classList.remove('dark');
-    localStorage.setItem('nethalo-theme', theme);
+    localStorage.setItem('national-hate-crime-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => setThemeState(prev => prev === 'dark' ? 'light' : 'dark');
@@ -35,3 +35,4 @@ export function useTheme(): UseThemeReturn {
 
   return { theme, toggleTheme, setTheme, mounted };
 }
+

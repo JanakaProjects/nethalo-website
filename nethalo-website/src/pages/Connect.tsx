@@ -123,7 +123,7 @@ export const Connect: React.FC = () => {
 
               <div style={{ fontSize: isMobile ? 13 : 13, color: 'var(--color-text-secondary)', marginBottom: 16, flex: 1 }}>
                 {acc.connected
-                  ? `Connected since ${acc.connected_at || 'recently'}. NETHALO is monitoring this platform for threats.`
+                  ? `Connected since ${acc.connected_at || 'recently'}. National Hate Crime is monitoring this platform for threats.`
                   : `Connect your ${acc.label} account to enable real-time threat detection.`}
               </div>
 
@@ -148,3 +148,4 @@ export const Connect: React.FC = () => {
     </DashboardLayout>
   );
 };
+

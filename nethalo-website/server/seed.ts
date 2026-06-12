@@ -22,11 +22,11 @@ export function seed() {
 
   // Seed users matching mock auth
   const users = [
-    { id: 'u1', name: 'Alex Rivera', email: 'student@nethalo.com', password: pw, role: 'student', school: 'Manchester Academy', age: 16 },
-    { id: 'u2', name: 'Sarah Thompson', email: 'parent@nethalo.com', password: pw, role: 'parent' },
-    { id: 'u3', name: 'Dr. James Mitchell', email: 'admin@nethalo.com', password: pw, role: 'admin', school: 'Brighton College', admin_role: 'head' },
-    { id: 'u4', name: 'Demo Student', email: 'demo@nethalo.com', password: pw, role: 'student', school: 'Central High', age: 15 },
-    { id: 'u5', name: 'Demo Parent', email: 'demo-parent@nethalo.com', password: pw, role: 'parent' },
+    { id: 'u1', name: 'Alex Rivera', email: 'student@National Hate Crime.com', password: pw, role: 'student', school: 'Manchester Academy', age: 16 },
+    { id: 'u2', name: 'Sarah Thompson', email: 'parent@National Hate Crime.com', password: pw, role: 'parent' },
+    { id: 'u3', name: 'Dr. James Mitchell', email: 'admin@National Hate Crime.com', password: pw, role: 'admin', school: 'Brighton College', admin_role: 'head' },
+    { id: 'u4', name: 'Demo Student', email: 'demo@National Hate Crime.com', password: pw, role: 'student', school: 'Central High', age: 15 },
+    { id: 'u5', name: 'Demo Parent', email: 'demo-parent@National Hate Crime.com', password: pw, role: 'parent' },
   ];
 
   const insertUser = db.prepare(
@@ -118,3 +118,4 @@ export function seed() {
 
 // Run directly
 seed();
+

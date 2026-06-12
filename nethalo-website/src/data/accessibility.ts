@@ -14,7 +14,7 @@ export interface TrustPrinciple {
 
 export const accessibilityData = {
   headline: 'Built for Everyone. Protected by Design.',
-  subhead: 'Accessibility and trust are not afterthoughts \u2014 they are foundational to how NETHALO works.',
+  subhead: 'Accessibility and trust are not afterthoughts \u2014 they are foundational to how National Hate Crime works.',
   features: [
     {
       id: 'tts',

@@ -46,7 +46,7 @@ export const audiences: Audience[] = [
       { title: 'Family Guidance AI', description: 'Generated conversation starters based on your child\u2019s digital wellbeing.', icon: 'message-circle' },
     ],
     testimonial: {
-      quote: 'I was worried about being overbearing. NETHALO gives me peace of mind without invading her privacy.',
+      quote: 'I was worried about being overbearing. National Hate Crime gives me peace of mind without invading her privacy.',
       author: 'Sarah Mitchell',
       role: 'Parent of 17-year-old',
     },
@@ -62,7 +62,7 @@ export const audiences: Audience[] = [
       { title: 'Digital Curriculum', description: '50+ hours of lesson plans on digital citizenship and anti-bullying.', icon: 'book-open' },
     ],
     testimonial: {
-      quote: 'NETHALO has transformed how we approach digital safeguarding. The dual-mode system is exactly what we needed.',
+      quote: 'National Hate Crime has transformed how we approach digital safeguarding. The dual-mode system is exactly what we needed.',
       author: 'Dr. James Okonkwo',
       role: 'Head of Pastoral Care',
     },

@@ -8,7 +8,7 @@ export interface Feature {
 }
 
 export const solution = {
-  headline: 'How NETHALO Works',
+  headline: 'How National Hate Crime Works',
   subhead: 'A layered defense system \u2014 not a single feature. Protection at every level of your digital life.',
   categories: [
     { id: 'filtering' as const, label: 'Smart Filtering', icon: 'shield-alert', color: 'blue' },

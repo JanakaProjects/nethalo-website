@@ -92,9 +92,9 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', zIndex: 1 }} aria-label="NETHALO Home">
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', zIndex: 1 }} aria-label="National Hate Crime Home">
           <Logo variant="mark" size="sm" />
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>National Hate Crime</span>
         </a>
 
         {/* Desktop Nav */}
@@ -315,3 +315,4 @@ export const Header: React.FC<HeaderProps> = ({ navItems }) => {
     </header>
   );
 };
+

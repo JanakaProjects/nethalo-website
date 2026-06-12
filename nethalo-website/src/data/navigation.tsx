@@ -33,5 +33,6 @@ export const navigation = {
     { label: 'Terms of Use', href: '#' },
     { label: 'Contact', href: '#cta' },
   ],
-  legalText: '2026 NETHALO. All rights reserved.',
+  legalText: '2026 National Hate Crime. All rights reserved.',
 };
+

@@ -40,15 +40,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem('nethalo_user');
-    const storedToken = localStorage.getItem('nethalo_token');
+    const stored = localStorage.getItem('national-hate-crime_user');
+    const storedToken = localStorage.getItem('national-hate-crime_token');
     if (stored && storedToken) {
       try {
         setUser(JSON.parse(stored));
         setToken(storedToken);
       } catch {
-        localStorage.removeItem('nethalo_user');
-        localStorage.removeItem('nethalo_token');
+        localStorage.removeItem('national-hate-crime_user');
+        localStorage.removeItem('national-hate-crime_token');
       }
     }
     setIsLoading(false);
@@ -65,8 +65,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const data: AuthResponse = await res.json();
       setUser(data.user);
       setToken(data.token);
-      localStorage.setItem('nethalo_user', JSON.stringify(data.user));
-      localStorage.setItem('nethalo_token', data.token);
+      localStorage.setItem('national-hate-crime_user', JSON.stringify(data.user));
+      localStorage.setItem('national-hate-crime_token', data.token);
       return true;
     } catch {
       return false;
@@ -91,35 +91,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const result: AuthResponse = await res.json();
     setUser(result.user);
     setToken(result.token);
-    localStorage.setItem('nethalo_user', JSON.stringify(result.user));
-    localStorage.setItem('nethalo_token', result.token);
+    localStorage.setItem('national-hate-crime_user', JSON.stringify(result.user));
+    localStorage.setItem('national-hate-crime_token', result.token);
   }, []);
 
   const logout = useCallback(() => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('nethalo_user');
-    localStorage.removeItem('nethalo_token');
+    localStorage.removeItem('national-hate-crime_user');
+    localStorage.removeItem('national-hate-crime_token');
   }, []);
 
   const guestLogin = useCallback(() => {
     const guest: User = {
       id: 'guest',
       name: 'Guest',
-      email: 'guest@nethalo.com',
+      email: 'guest@National Hate Crime.com',
       role: 'student',
     };
     setUser(guest);
     setToken('guest-token');
-    localStorage.setItem('nethalo_user', JSON.stringify(guest));
-    localStorage.setItem('nethalo_token', 'guest-token');
+    localStorage.setItem('national-hate-crime_user', JSON.stringify(guest));
+    localStorage.setItem('national-hate-crime_token', 'guest-token');
   }, []);
 
   const updateUser = useCallback((data: Partial<User>) => {
     setUser(prev => {
       if (!prev) return null;
       const updated = { ...prev, ...data };
-      localStorage.setItem('nethalo_user', JSON.stringify(updated));
+      localStorage.setItem('national-hate-crime_user', JSON.stringify(updated));
       return updated;
     });
   }, []);
@@ -136,3 +136,5 @@ export const useAuth = () => {
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 };
+
+

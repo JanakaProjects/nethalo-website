@@ -87,7 +87,7 @@ const faqItems = [
     answer: 'If you witness cyberbullying, use the "Report a Concern" button to make an anonymous report. You can also encourage the person to seek support through the "Talk to Someone" feature.',
   },
   {
-    question: 'Is my data safe on NETHALO?',
+    question: 'Is my data safe on National Hate Crime?',
     answer: 'Yes. We use industry-standard encryption and security practices. Your personal data is stored securely and is not shared with third parties. For more details, see our Privacy Policy.',
   },
   {
@@ -149,7 +149,7 @@ export const HelpSection: React.FC = () => {
                 Help &amp; Guide
               </h2>
               <p style={{ fontSize: 13, color: 'var(--color-text-muted)', margin: '2px 0 0 0' }}>
-                Everything you need to know about NETHALO
+                Everything you need to know about National Hate Crime
               </p>
             </div>
           </div>
@@ -255,3 +255,4 @@ export const HelpSection: React.FC = () => {
     </div>
   );
 };
+

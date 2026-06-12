@@ -43,7 +43,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
       <div style={{ padding: isMobile ? '20px 16px' : '24px 20px', borderBottom: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <Shield size={isMobile ? 24 : 28} style={{ color: 'var(--color-brand-shield)' }} />
-          <span style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>NETHALO</span>
+          <span style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>National Hate Crime</span>
         </Link>
         {isMobile && (
           <button onClick={() => setSidebarOpen(false)} style={{ width: 36, height: 36, borderRadius: 8, border: 'none', background: 'var(--color-bg-secondary)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', minHeight: 44, minWidth: 44 }} aria-label="Close menu" type="button">
@@ -120,7 +120,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Shield size={22} style={{ color: 'var(--color-brand-shield)' }} />
-            <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>NETHALO</span>
+            <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>National Hate Crime</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <button onClick={toggleTheme}
@@ -141,3 +141,4 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ child
     </div>
   );
 };
+

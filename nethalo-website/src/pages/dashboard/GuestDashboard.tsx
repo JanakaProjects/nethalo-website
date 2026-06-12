@@ -21,7 +21,7 @@ export const GuestDashboard: React.FC = () => {
           <div style={{ width: 56, height: 56, borderRadius: 16, background: 'var(--color-brand-shield-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--color-brand-shield)' }}>
             <Shield size={28} />
           </div>
-          <h1 style={{ fontSize: isMobile ? 24 : 28, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 8 }}>Welcome to NETHALO</h1>
+          <h1 style={{ fontSize: isMobile ? 24 : 28, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 8 }}>Welcome to National Hate Crime</h1>
           <p style={{ fontSize: 15, color: 'var(--color-text-muted)', lineHeight: 1.5, maxWidth: 480, margin: '0 auto' }}>You're viewing a preview. Create a free account to unlock full protection.</p>
           <button onClick={() => navigate('/signup')}
             style={{ marginTop: 20, padding: '12px 32px', borderRadius: 9999, fontSize: 15, fontWeight: 600, color: '#ffffff', background: 'var(--color-brand-shield)', border: 'none', cursor: 'pointer', minHeight: 44 }}>
@@ -55,3 +55,4 @@ export const GuestDashboard: React.FC = () => {
     </div>
   );
 };
+

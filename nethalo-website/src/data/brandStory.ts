@@ -1,17 +1,17 @@
 export const brandStory = {
-  headline: 'The NETHALO Story',
+  headline: 'The National Hate Crime Story',
   subhead: 'A name, a symbol, a companion \u2014 every part of our brand is built to mean something.',
   sections: [
     {
       title: 'The Name',
       content:
-        'NETHALO combines Net (the digital world we navigate every day) with Halo (a symbol of protection, safety, and light). Together, they represent our mission: to surround every young person with a protective digital shield that keeps them safe without holding them back.',
+        'National Hate Crime combines Net (the digital world we navigate every day) with Halo (a symbol of protection, safety, and light). Together, they represent our mission: to surround every young person with a protective digital shield that keeps them safe without holding them back.',
       icon: 'globe',
     },
     {
       title: 'The Slogan',
       content:
-        '"Defend Your Digital World" is both a promise and a call to action. It reminds every user that they have the right to a safe online space \u2014 and that NETHALO is the tool that makes that defence possible.',
+        '"Defend Your Digital World" is both a promise and a call to action. It reminds every user that they have the right to a safe online space \u2014 and that National Hate Crime is the tool that makes that defence possible.',
       icon: 'shield',
     },
     {
