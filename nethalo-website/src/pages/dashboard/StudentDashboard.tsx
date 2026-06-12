@@ -18,7 +18,7 @@ const SafetyScoreRing: React.FC<{ score: number; isMobile: boolean }> = ({ score
   const color = score >= 80 ? '#34c759' : score >= 60 ? '#ff9500' : '#ff3b30';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
       <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
         <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--color-border-light)" strokeWidth={stroke} />
         <motion.circle
@@ -29,7 +29,7 @@ const SafetyScoreRing: React.FC<{ score: number; isMobile: boolean }> = ({ score
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         />
       </svg>
-      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, width: size, height: size, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <motion.span
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
