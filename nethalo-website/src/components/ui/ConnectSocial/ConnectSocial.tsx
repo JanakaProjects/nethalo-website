@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, ExternalLink, Check, Loader } from 'lucide-react';
+import { ExternalLink, Check, Loader } from 'lucide-react';
 
 interface Platform {
   id: string;
