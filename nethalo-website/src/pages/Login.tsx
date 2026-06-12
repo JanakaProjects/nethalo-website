@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '../lib/useIsMobile';
 import { useAuth } from '../lib/auth';
-import { Shield, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Shield, Mail, Lock, AlertCircle, User, Users, Building2 } from 'lucide-react';
+
+type Role = 'student' | 'parent' | 'admin';
+
+const roleTabs: { key: Role; label: string; icon: React.ReactNode; email: string; password: string }[] = [
+  { key: 'student', label: 'Student', icon: <User size={16} />, email: 'student@nationalhatecrime.com', password: 'password123' },
+  { key: 'parent', label: 'Parent', icon: <Users size={16} />, email: 'parent@nationalhatecrime.com', password: 'password123' },
+  { key: 'admin', label: 'School Admin', icon: <Building2 size={16} />, email: 'admin@nationalhatecrime.com', password: 'password123' },
+];
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,11 +21,24 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile(768);
 
-  const defaultAccounts = [
-    { role: 'Student', email: 'student@nationalhatecrime.com', password: 'password123' },
-    { role: 'Parent', email: 'parent@nationalhatecrime.com', password: 'password123' },
-    { role: 'Admin', email: 'admin@nationalhatecrime.com', password: 'password123' },
-  ];
+  const handleRoleLogin = async (role: Role) => {
+    const account = roleTabs.find(r => r.key === role)!;
+    setError('');
+    setLoading(true);
+    try {
+      const ok = await login(account.email, account.password);
+      if (ok) {
+        const stored = localStorage.getItem('national-hate-crime_user');
+        if (stored) {
+          const user = JSON.parse(stored);
+          navigate(`/dashboard/${user.role}`, { replace: true });
+        }
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch { setError('Something went wrong'); }
+    setLoading(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +53,7 @@ export const Login: React.FC = () => {
           navigate(`/dashboard/${user.role}`, { replace: true });
         }
       } else {
-        setError('Invalid email or password. Try student@nationalhatecrime.com / password123');
+        setError('Invalid email or password');
       }
     } catch { setError('Something went wrong'); }
     setLoading(false);
@@ -44,7 +65,34 @@ export const Login: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: isMobile ? 24 : 32 }}>
           <Shield size={isMobile ? 32 : 40} style={{ color: 'var(--color-brand-shield)', marginBottom: 12 }} />
           <h1 style={{ fontSize: isMobile ? 22 : 24, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>Welcome back</h1>
-          <p style={{ fontSize: isMobile ? 14 : 14, color: 'var(--color-text-muted)' }}>Sign in to your National Hate Crime account</p>
+          <p style={{ fontSize: 14, color: 'var(--color-text-muted)' }}>Sign in to your National Hate Crime account</p>
+        </div>
+
+        <p style={{ fontSize: 13, fontWeight: 500, color: 'var(--color-text-muted)', marginBottom: 8, textAlign: 'center' }}>Quick demo login — pick your role:</p>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+          {roleTabs.map(r => (
+            <button key={r.key} onClick={() => handleRoleLogin(r.key)} disabled={loading}
+              style={{
+                flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                padding: isMobile ? '10px 4px' : '14px 8px', borderRadius: 10, border: '1px solid var(--color-border-medium)',
+                background: 'var(--color-bg-secondary)', color: 'var(--color-text-secondary)',
+                cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.2s', fontSize: 12, fontWeight: 500, minHeight: 56
+              }}
+              onMouseEnter={e => { if (!loading) { e.currentTarget.style.background = 'var(--color-brand-shield)'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = 'var(--color-brand-shield)'; } }}
+              onMouseLeave={e => { if (!loading) { e.currentTarget.style.background = 'var(--color-bg-secondary)'; e.currentTarget.style.color = 'var(--color-text-secondary)'; e.currentTarget.style.borderColor = 'var(--color-border-medium)'; } }}>
+              {r.icon}
+              {r.label}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ position: 'relative', marginBottom: 20 }}>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center' }}>
+            <div style={{ flex: 1, height: 1, background: 'var(--color-border-medium)' }} />
+          </div>
+          <div style={{ position: 'relative', textAlign: 'center', fontSize: 12, color: 'var(--color-text-muted)' }}>
+            <span style={{ background: 'var(--color-bg-elevated)', padding: '0 10px' }}>or sign in manually</span>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -60,7 +108,10 @@ export const Login: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: 8 }}>
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 6 }} htmlFor="password">Password</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+              <label style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }} htmlFor="password">Password</label>
+              <a href="/forgot-password" style={{ fontSize: 12, color: 'var(--color-brand-shield)', textDecoration: 'none' }} onClick={e => { e.preventDefault(); navigate('/forgot-password'); }}>Forgot password?</a>
+            </div>
             <div style={{ position: 'relative' }}>
               <Lock size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-secondary)' }} />
               <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter your password" required
@@ -70,12 +121,8 @@ export const Login: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ textAlign: 'right', marginBottom: 24 }}>
-            <a href="/forgot-password" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none' }} onClick={e => { e.preventDefault(); navigate('/forgot-password'); }}>Forgot password?</a>
-          </div>
-
           {error && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', borderRadius: 10, marginBottom: 16, fontSize: 13, color: 'var(--color-error)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', borderRadius: 10, margin: '16px 0', fontSize: 13, color: 'var(--color-error)' }}>
               <AlertCircle size={14} /><span>{error}</span>
             </div>
           )}
@@ -96,24 +143,7 @@ export const Login: React.FC = () => {
         <div style={{ textAlign: 'center', marginTop: 12, fontSize: 14 }}>
           <button onClick={() => { guestLogin(); navigate('/dashboard/guest'); }} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, minHeight: 44 }}>Continue as Guest</button>
         </div>
-
-        <div style={{ marginTop: 24, padding: 14, borderRadius: 10, border: '1px solid var(--color-border-light)', background: 'var(--color-bg-secondary)' }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-muted)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Demo Accounts</p>
-          {defaultAccounts.map((acc, i) => (
-            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, padding: '6px 0', borderBottom: i < defaultAccounts.length - 1 ? '1px solid var(--color-border-light)' : 'none' }}>
-              <span style={{ color: 'var(--color-text-secondary)' }}>{acc.role}</span>
-              <button onClick={() => { setEmail(acc.email); setPassword(acc.password); }}
-                style={{ color: 'var(--color-brand-shield)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 500 }}
-                title={`Click to fill: ${acc.email} / ${acc.password}`}>
-                {acc.email}
-              </button>
-            </div>
-          ))}
-          <p style={{ fontSize: 11, color: 'var(--color-text-muted)', marginTop: 8 }}>Click any email to auto-fill. Password for all: <strong>password123</strong></p>
-        </div>
       </div>
     </div>
   );
 };
-
-

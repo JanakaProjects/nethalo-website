@@ -108,6 +108,8 @@ app.use((_req, res) => {
 });
 
 initDb();
+import { seed } from './seed.js';
+seed();
 startWeeklyDigest();
 httpServer.listen(PORT, () => {
   console.log(`National Hate Crime backend running on http://localhost:${PORT}`);
