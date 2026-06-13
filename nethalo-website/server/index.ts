@@ -4,6 +4,7 @@ import { Server as SocketIOServer } from 'socket.io';
 import cors from 'cors';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
 import { initDb } from './db.js';
 import { authMiddleware } from './middleware/auth.js';
 import authRoutes from './routes/auth.js';
@@ -76,9 +77,17 @@ app.get('/api/export/threats', authMiddleware, (req: Request, res: Response) => 
   const db = getDb();
   const threats = db.prepare('SELECT * FROM threats WHERE user_id = ? ORDER BY timestamp DESC').all(req.user.userId);
   
+  function escapeCsvField(field: any): string {
+    const str = String(field ?? '');
+    if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  }
+
   let csv = 'id,platform,type,severity,message,timestamp,blocked\n';
   for (const t of threats) {
-    csv += `${t.id},${t.platform},${t.type},${t.severity},"${t.message}",${t.timestamp},${t.blocked}\n`;
+    csv += [t.id, t.platform, t.type, t.severity, escapeCsvField(t.message), t.timestamp, t.blocked].join(',') + '\n';
   }
   
   res.setHeader('Content-Type', 'text/csv');
@@ -91,9 +100,17 @@ app.get('/api/export/reports', authMiddleware, (req: Request, res: Response) => 
   const db = getDb();
   const reports = db.prepare('SELECT * FROM reports WHERE user_id = ? ORDER BY created_at DESC').all(req.user.userId);
   
+  function escapeCsvField(field: any): string {
+    const str = String(field ?? '');
+    if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  }
+
   let csv = 'id,type,description,target_name,created_at\n';
   for (const r of reports) {
-    csv += `${r.id},${r.type},"${r.description}",${r.target_name},${r.created_at}\n`;
+    csv += [r.id, r.type, escapeCsvField(r.description), escapeCsvField(r.target_name), r.created_at].join(',') + '\n';
   }
   
   res.setHeader('Content-Type', 'text/csv');
@@ -104,7 +121,12 @@ app.get('/api/export/reports', authMiddleware, (req: Request, res: Response) => 
 setupSwagger(app);
 
 app.use((_req, res) => {
-  res.sendFile(resolve(distPath, 'index.html'));
+  const indexPath = resolve(distPath, 'index.html');
+  if (existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).json({ error: 'Not found' });
+  }
 });
 
 initDb();

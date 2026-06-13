@@ -35,8 +35,11 @@ export const NotificationBell: React.FC<{ isMobile?: boolean }> = ({ isMobile = 
   }, []);
 
   const markAsRead = (id: string) => {
-    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
-    setUnreadCount(prev => Math.max(0, prev - 1));
+    setNotifications(prev => {
+      const updated = prev.map(n => n.id === id ? { ...n, read: true } : n);
+      setUnreadCount(updated.filter(n => !n.read).length);
+      return updated;
+    });
   };
 
   const bellSize = isMobile ? 18 : 20;

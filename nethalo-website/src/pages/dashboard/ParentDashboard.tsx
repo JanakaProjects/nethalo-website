@@ -313,7 +313,7 @@ const ParentDashboard: React.FC = () => {
       </div>
 
       {error && (
-        <div style={{ padding: 12, borderRadius: 12, background: '#fff0ee', color: '#ff3b30', fontSize: 14, marginBottom: 16 }}>{error}</div>
+        <div style={{ padding: 12, borderRadius: 12, background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', color: 'var(--color-error)', fontSize: 14, marginBottom: 16 }}>{error}</div>
       )}
 
       <div style={{ display: 'flex', gap: 8, marginBottom: isMobile ? 20 : 28, overflowX: 'auto', paddingBottom: 4 }}>

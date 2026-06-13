@@ -116,6 +116,8 @@ export function seed() {
   console.log('Database seeding complete!');
 }
 
-// Run directly
-seed();
+// Run directly when executed
+if (import.meta.url === `file://${process.argv[1]}`) {
+  seed();
+}
 

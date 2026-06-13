@@ -3,6 +3,10 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'national-hate-crime-dev-secret-key-change-in-production';
 
+if (!process.env.JWT_SECRET) {
+  console.warn('WARNING: JWT_SECRET not set. Using default dev secret. Set JWT_SECRET in production!');
+}
+
 export interface AuthPayload {
   userId: string;
   email: string;

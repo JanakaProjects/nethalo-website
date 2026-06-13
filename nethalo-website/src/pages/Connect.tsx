@@ -90,7 +90,7 @@ export const Connect: React.FC = () => {
       </p>
 
       {error && (
-        <div style={{ padding: 12, borderRadius: 12, background: '#fff0ee', color: '#ff3b30', fontSize: 14, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ padding: 12, borderRadius: 12, background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', color: 'var(--color-error)', fontSize: 14, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <AlertCircle size={16} />
           {error}
         </div>

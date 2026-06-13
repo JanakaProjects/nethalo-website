@@ -6,7 +6,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dbPath = process.env.DATABASE_URL || resolve(__dirname, 'National Hate Crime.db');
+const dbPath = process.env.DATABASE_URL || resolve(__dirname, 'nethalo.db');
 const db = new Database(dbPath);
 
 // Enable foreign keys

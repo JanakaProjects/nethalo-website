@@ -127,7 +127,7 @@ export const HelpSection: React.FC = () => {
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         style={{
-          background: 'var(--color300)',
+          background: 'var(--color-bg-elevated)',
           borderRadius: 20,
           padding: '24px',
           maxWidth: 640,

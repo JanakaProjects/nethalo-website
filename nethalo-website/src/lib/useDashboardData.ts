@@ -26,17 +26,20 @@ export function useStudentData(userId: string | undefined) {
 
   useEffect(() => {
     if (!userId) return;
+    let cancelled = false;
     setIsLoading(true);
     setError(null);
     getDashboardStats()
       .then(data => {
+        if (cancelled) return;
         setSafeScore(data.stats.safeScore);
         setStats(data.stats);
         setWeeklyActivity(data.weeklyTrend || []);
         setRecentActivity(data.recentActivity || []);
       })
-      .catch(e => setError(e.message))
-      .finally(() => setIsLoading(false));
+      .catch(e => { if (!cancelled) setError(e.message); })
+      .finally(() => { if (!cancelled) setIsLoading(false); });
+    return () => { cancelled = true; };
   }, [userId]);
 
   return { safeScore, stats, weeklyActivity, recentActivity, isLoading, error };
@@ -51,16 +54,19 @@ export function useParentData(parentId: string | undefined) {
 
   useEffect(() => {
     if (!parentId) return;
+    let cancelled = false;
     setIsLoading(true);
     setError(null);
     Promise.all([getDashboardStats(), getChildren()])
       .then(([d, c]) => {
+        if (cancelled) return;
         setStats(d.stats);
         setChildren(c.children);
         setWeeklyActivity(d.weeklyTrend || []);
       })
-      .catch(e => setError(e.message))
-      .finally(() => setIsLoading(false));
+      .catch(e => { if (!cancelled) setError(e.message); })
+      .finally(() => { if (!cancelled) setIsLoading(false); });
+    return () => { cancelled = true; };
   }, [parentId]);
 
   return { stats, children, weeklyActivity, isLoading, error };
@@ -75,17 +81,20 @@ export function useAdminData() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
     setIsLoading(true);
     setError(null);
     Promise.all([getDashboardStats(), getReports()])
       .then(([d, r]) => {
+        if (cancelled) return;
         setStats(d.stats);
         setPendingReports(r.reports);
         setWeeklyActivity(d.weeklyTrend || []);
         setRecentActivity(d.recentActivity || []);
       })
-      .catch(e => setError(e.message))
-      .finally(() => setIsLoading(false));
+      .catch(e => { if (!cancelled) setError(e.message); })
+      .finally(() => { if (!cancelled) setIsLoading(false); });
+    return () => { cancelled = true; };
   }, []);
 
   return { stats, pendingReports, weeklyActivity, recentActivity, isLoading, error };

@@ -9,7 +9,7 @@ export interface ModerationResult {
 const HATE_KEYWORDS = [
   'slur', 'hate', 'kill', 'die', 'stupid', 'ugly', 'fat', 'loser',
   'worthless', 'trash', 'disgusting', 'pathetic', 'idiot', 'moron',
-  'retard', 'freak', 'freak', 'creep', 'weirdo', 'psycho', 'crazy',
+  'retard', 'freak', 'creep', 'weirdo', 'psycho', 'crazy',
   'nobody likes you', 'go away', 'kill yourself', 'kys',
   'no one wants you', 'you suck', 'worst person', 'hate you',
 ];

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { DashboardLayout } from '../../components/layout/DashboardLayout/DashboardLayout';
 import { StaggerContainer } from '../../components/ui/motion/StaggerContainer';
@@ -8,6 +9,7 @@ import { useIsMobile } from '../../lib/useIsMobile';
 import { useAuth } from '../../lib/auth';
 import { useStudentData } from '../../lib/useDashboardData';
 import { Shield, AlertTriangle, MessageCircle, FileText, BookOpen, Activity, Users, TrendingUp, X, ExternalLink, Phone, Mail, ArrowRight, Download } from 'lucide-react';
+import { createReport, createJournalEntry } from '../../lib/api';
 
 const SafetyScoreRing: React.FC<{ score: number; isMobile: boolean }> = ({ score, isMobile }) => {
   const size = isMobile ? 90 : 110;
@@ -52,6 +54,9 @@ const getBarColor = (value: number) => {
 
 const StudentDashboard: React.FC = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [reportType, setReportType] = useState('Cyberbullying');
+  const [reportDesc, setReportDesc] = useState('');
+  const [journalContent, setJournalContent] = useState('');
   const { user } = useAuth();
   const { safeScore, stats, weeklyActivity, recentActivity, isLoading, error } = useStudentData(user?.id);
   const isMobile = useIsMobile(768);
@@ -128,7 +133,7 @@ const StudentDashboard: React.FC = () => {
               interactions, and <strong>Recent Activity</strong> keeps you updated on what is happening.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              <a href="/help" style={{
+              <Link to="/help" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
                 padding: '8px 16px', borderRadius: 10,
                 background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)',
@@ -137,7 +142,7 @@ const StudentDashboard: React.FC = () => {
               }} onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'}>
                 View Full Help Guide
-              </a>
+              </Link>
               <button onClick={() => { /* scroll to quick actions */ }}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -173,7 +178,7 @@ const StudentDashboard: React.FC = () => {
       </StaggerContainer>
 
       {error && (
-        <div style={{ padding: 12, borderRadius: 12, background: '#fff0ee', color: '#ff3b30', fontSize: 14, marginBottom: 16 }}>{error}</div>
+        <div style={{ padding: 12, borderRadius: 12, background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', color: 'var(--color-error)', fontSize: 14, marginBottom: 16 }}>{error}</div>
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 12 : 24, marginBottom: isMobile ? 24 : 32 }}>
@@ -215,9 +220,9 @@ const StudentDashboard: React.FC = () => {
           ) : (
             <div style={{ fontSize: 14, color: 'var(--color-text-secondary)', textAlign: 'center', padding: '20px 0' }}>
               <div style={{ marginBottom: 6 }}>No activity recorded this week.</div>
-              <a href="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500 }}>
+              <Link to="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500 }}>
                 Learn how activity tracking works →
-              </a>
+              </Link>
             </div>
           )}
         </div>
@@ -236,9 +241,9 @@ const StudentDashboard: React.FC = () => {
             ))}
           </div>
           <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--color-border-light)' }}>
-            <a href="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <Link to="/help" style={{ fontSize: 13, color: 'var(--color-brand-shield)', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               Learn more about activity tracking →
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -270,7 +275,7 @@ const StudentDashboard: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
                 <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Type of concern</label>
-                <select style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', background: 'var(--color-bg-elevated)', appearance: 'none', cursor: 'pointer', minHeight: 44 }}>
+                <select value={reportType} onChange={e => setReportType(e.target.value)} style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', background: 'var(--color-bg-elevated)', appearance: 'none', cursor: 'pointer', minHeight: 44 }}>
                   <option>Cyberbullying</option>
                   <option>Harassment</option>
                   <option>Threatening behavior</option>
@@ -279,10 +284,17 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div>
                 <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Description</label>
-                <textarea rows={4} placeholder="Describe what happened..." style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
+                <textarea value={reportDesc} onChange={e => setReportDesc(e.target.value)} rows={4} placeholder="Describe what happened..." style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
               </div>
               <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: 'var(--color-brand-shield)', color: 'var(--color-text-inverse)', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
-                onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'} onClick={() => setActiveModal(null)}>
+                onMouseEnter={e => e.currentTarget.style.background = 'var(--color-brand-blue-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'var(--color-brand-shield)'} onClick={async () => {
+                  if (reportType) {
+                    try { await createReport(reportType, reportDesc); } catch {}
+                    setActiveModal(null);
+                    setReportType('Cyberbullying');
+                    setReportDesc('');
+                  }
+                }}>
                 Submit Report <ArrowRight size={18} />
               </button>
             </div>
@@ -310,7 +322,7 @@ const StudentDashboard: React.FC = () => {
                     <div style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: 'var(--color-text-primary)' }}>{report.type}</div>
                     <div style={{ fontSize: 12, color: 'var(--color-text-secondary)' }}>{report.id} · {report.date}</div>
                   </div>
-                  <div style={{ fontSize: 12, fontWeight: 600, padding: '3px 12px', borderRadius: 20, background: report.status === 'Resolved' ? '#e8f8e8' : report.status === 'In Review' ? '#fff3e0' : '#fff0ee', color: report.color, whiteSpace: 'nowrap' }}>{report.status}</div>
+                  <div style={{ fontSize: 12, fontWeight: 600, padding: '3px 12px', borderRadius: 20, background: report.status === 'Resolved' ? 'color-mix(in srgb, var(--color-success) 15%, transparent)' : report.status === 'In Review' ? 'color-mix(in srgb, var(--color-warning) 15%, transparent)' : 'color-mix(in srgb, var(--color-error) 15%, transparent)', color: report.color, whiteSpace: 'nowrap' }}>{report.status}</div>
                 </div>
               ))}
             </div>
@@ -360,10 +372,16 @@ const StudentDashboard: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
                 <label style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', display: 'block', marginBottom: 6 }}>Today&apos;s entry</label>
-                <textarea rows={6} placeholder="How are you feeling today?" style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
+                <textarea value={journalContent} onChange={e => setJournalContent(e.target.value)} rows={6} placeholder="How are you feeling today?" style={{ width: '100%', padding: '12px 16px', borderRadius: 12, border: '1px solid var(--color-border-medium)', fontSize: 15, color: 'var(--color-text-primary)', resize: 'vertical', fontFamily: 'inherit', lineHeight: 1.5 }} />
               </div>
               <button style={{ padding: '14px 28px', borderRadius: 12, border: 'none', background: '#af52de', color: 'var(--color-text-inverse)', fontSize: 16, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 48 }}
-                onMouseEnter={e => e.currentTarget.style.background = '#c06cf0'} onMouseLeave={e => e.currentTarget.style.background = '#af52de'} onClick={() => setActiveModal(null)}>
+                onMouseEnter={e => e.currentTarget.style.background = '#c06cf0'} onMouseLeave={e => e.currentTarget.style.background = '#af52de'} onClick={async () => {
+                  if (journalContent.trim()) {
+                    try { await createJournalEntry(journalContent, 'neutral'); } catch {}
+                    setActiveModal(null);
+                    setJournalContent('');
+                  }
+                }}>
                 Save Entry <ArrowRight size={18} />
               </button>
             </div>

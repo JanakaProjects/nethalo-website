@@ -27,6 +27,7 @@ initModerationTable();
 
 // POST /api/moderation/analyze
 router.post('/analyze', (req: Request, res: Response) => {
+  if (!req.user) { res.status(401).json({ error: 'Not authenticated' }); return; }
   const { text, platform, commentId } = req.body;
   if (!text) {
     res.status(400).json({ error: 'Text required' });
@@ -65,6 +66,9 @@ router.post('/moderate', (req: Request, res: Response) => {
     );
 
     res.json({ result });
+  }).catch(err => {
+    console.error('Moderation error:', err);
+    res.status(500).json({ error: 'Moderation failed' });
   });
 });
 

@@ -292,7 +292,7 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       {error && (
-        <div style={{ padding: '12px 16px', borderRadius: 12, background: '#fff0ee', color: '#ff3b30', fontSize: 14, marginBottom: 20 }}>{error}</div>
+        <div style={{ padding: '12px 16px', borderRadius: 12, background: 'color-mix(in srgb, var(--color-error) 15%, transparent)', color: 'var(--color-error)', fontSize: 14, marginBottom: 20 }}>{error}</div>
       )}
 
       <div style={{ display: 'flex', gap: 8, marginBottom: isMobile ? 20 : 28, overflowX: 'auto', paddingBottom: 4 }}>

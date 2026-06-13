@@ -3,17 +3,16 @@ import { Link } from 'react-router-dom';
 import { Shield, Home } from 'lucide-react';
 
 export const NotFound: React.FC = () => (
-  <div className="min-h-screen flex items-center justify-center bg-bg-primary">
-    <div className="text-center space-y-6">
-      <Shield className="w-24 h-24 text-brand-pink mx-auto opacity-40" />
-      <h1 className="text-8xl font-black text-primary">404</h1>
-      <p className="text-xl text-muted">This digital realm doesn't exist... yet.</p>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: 'var(--color-bg-primary)' }}>
+    <div style={{ textAlign: 'center' }}>
+      <Shield size={96} style={{ color: 'var(--color-brand-pink)', opacity: 0.4, margin: '0 auto 16px' }} />
+      <h1 style={{ fontSize: 96, fontWeight: 900, color: 'var(--color-text-primary)', lineHeight: 1, marginBottom: 12 }}>404</h1>
+      <p style={{ fontSize: 20, color: 'var(--color-text-muted)', marginBottom: 32 }}>This digital realm doesn&apos;t exist... yet.</p>
       <Link
         to="/"
-        className="inline-flex items-center gap-2 px-8 py-4 glass-button rounded-full font-bold text-lg hover:scale-105 transition-all"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 32px', borderRadius: 9999, background: 'var(--color-brand-shield)', color: '#ffffff', fontSize: 18, fontWeight: 700, textDecoration: 'none', transition: 'all 0.2s' }}
       >
-        <Home className="w-5 h-5" />
-        Return Home
+        <Home size={20} /> Return Home
       </Link>
     </div>
   </div>

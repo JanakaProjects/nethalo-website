@@ -26,7 +26,7 @@ export const PasswordReset: React.FC = () => {
         setError('Account not found. Check your email and try again.');
       }
     } catch {
-      setSent(true);
+      setError('Network error. Please check your connection and try again.');
     }
     setLoading(false);
   };

@@ -5,15 +5,19 @@ import bcrypt from 'bcryptjs';
 const router = Router();
 
 router.get('/users', (req: Request, res: Response) => {
-  if (!req.user) { res.status(401).json({ error: 'Not authenticated' }); return; }
+  if (!req.user || req.user.role !== 'admin') { res.status(403).json({ error: 'Admin access required' }); return; }
   const db = getDb();
   const users = db.prepare('SELECT id, name, email, role, school, created_at FROM users ORDER BY created_at DESC').all();
   res.json({ users });
 });
 
 router.put('/users/:id', (req: Request, res: Response) => {
-  if (!req.user) { res.status(401).json({ error: 'Not authenticated' }); return; }
+  if (!req.user || req.user.role !== 'admin') { res.status(403).json({ error: 'Admin access required' }); return; }
   const { name, email, role } = req.body;
+  if (role && !['student', 'parent', 'admin'].includes(role)) {
+    res.status(400).json({ error: 'Invalid role' });
+    return;
+  }
   const db = getDb();
   db.prepare('UPDATE users SET name=COALESCE(?,name), email=COALESCE(?,email), role=COALESCE(?,role) WHERE id=?')
     .run(name || null, email || null, role || null, req.params.id);
@@ -21,7 +25,7 @@ router.put('/users/:id', (req: Request, res: Response) => {
 });
 
 router.delete('/users/:id', (req: Request, res: Response) => {
-  if (!req.user) { res.status(401).json({ error: 'Not authenticated' }); return; }
+  if (!req.user || req.user.role !== 'admin') { res.status(403).json({ error: 'Admin access required' }); return; }
   const db = getDb();
   db.prepare('DELETE FROM users WHERE id = ?').run(req.params.id);
   res.json({ success: true });

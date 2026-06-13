@@ -23,9 +23,9 @@ function runDigest() {
       SELECT COUNT(*) as totalThreats, 
              SUM(CASE WHEN blocked=1 THEN 1 ELSE 0 END) as blocked 
       FROM threats WHERE user_id = ? AND timestamp >= DATE('now', '-7 days')
-    `).get(user.id);
+    `).get(user.id) as any;
 
-    if (stats.totalThreats > 0) {
+    if (stats && stats.totalThreats > 0) {
       sendWeeklyDigest(user.email, user.name, stats).catch(() => {});
     }
   }

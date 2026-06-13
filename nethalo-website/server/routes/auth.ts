@@ -1,7 +1,8 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 import { getDb } from '../db.js';
-import { generateToken } from '../middleware/auth.js';
+import { generateToken, authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
 
@@ -39,6 +40,12 @@ router.post('/signup', (req: Request, res: Response) => {
     return;
   }
 
+  const allowedRoles = ['student', 'parent'];
+  if (!allowedRoles.includes(role)) {
+    res.status(400).json({ error: 'Invalid role' });
+    return;
+  }
+
   const db = getDb();
   const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
   if (existing) {
@@ -60,8 +67,7 @@ router.post('/signup', (req: Request, res: Response) => {
 });
 
 // GET /api/auth/me
-router.get('/me', (req: Request, res: Response) => {
-  // Requires auth middleware to set req.user
+router.get('/me', authMiddleware, (req: Request, res: Response) => {
   if (!req.user) {
     res.status(401).json({ error: 'Not authenticated' });
     return;
@@ -89,7 +95,7 @@ router.post('/reset-password', (req: Request, res: Response) => {
     res.status(404).json({ error: 'Account not found' });
     return;
   }
-  const resetToken = require('crypto').randomBytes(32).toString('hex');
+  const resetToken = crypto.randomBytes(32).toString('hex');
   const expires = Date.now() + 3600000;
   db.prepare('UPDATE users SET reset_token = ?, reset_expires = ? WHERE id = ?').run(resetToken, expires, user.id);
   res.json({ message: 'Reset link sent to your email' });
@@ -108,7 +114,7 @@ router.post('/verify-email', (req: Request, res: Response) => {
     res.status(404).json({ error: 'Account not found' });
     return;
   }
-  const verifyToken = require('crypto').randomBytes(32).toString('hex');
+  const verifyToken = crypto.randomBytes(32).toString('hex');
   db.prepare('UPDATE users SET verify_token = ? WHERE id = ?').run(verifyToken, user.id);
   res.json({ message: 'Verification email sent' });
 });

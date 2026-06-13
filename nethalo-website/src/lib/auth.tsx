@@ -88,6 +88,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         admin_role: data.adminRole,
       }),
     });
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}));
+      throw new Error(error.message || error.error || 'Signup failed');
+    }
     const result: AuthResponse = await res.json();
     setUser(result.user);
     setToken(result.token);
