@@ -1,3 +1,4 @@
+/* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +7,7 @@
 
 html {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 16px;
   line-height: var(--leading-normal);
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
@@ -18,25 +19,59 @@ html {
 
 body {
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
+/* Links */
 a {
-  color: var(--color-brand-blue);
+  color: var(--color-brand-shield);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
-a:hover { color: var(--color-brand-blue-hover); }
 
-button { font: inherit; border: none; background: none; cursor: pointer; outline: none; color: inherit; }
-input { font: inherit; border: none; background: none; outline: none; }
-ul, ol { list-style: none; }
-img, svg { display: block; max-width: 100%; }
+a:hover {
+  color: var(--color-brand-shield-dark);
+}
 
-::selection { background: var(--color-brand-blue); color: var(--color-text-inverse); }
+/* Interactive elements */
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
 
+button:focus-visible {
+  outline: 2px solid var(--color-brand-shield);
+  outline-offset: 2px;
+}
+
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-brand-shield);
+  color: white;
+}
+
+/* Typography utilities */
 .section-heading {
-  font-size: var(--text-5xl);
+  font-size: var(--text-4xl);
   font-weight: var(--font-bold);
-  letter-spacing: -0.012em;
+  letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
   margin-bottom: var(--space-4);
@@ -54,18 +89,58 @@ img, svg { display: block; max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-  .section-heading { font-size: 32px; }
-  .section-subhead { font-size: 17px; }
-}
-
-/* Shimmer loading animation */
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  .section-heading { font-size: var(--text-3xl); }
+  .section-subhead { font-size: var(--text-base); }
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border-light); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-medium);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Focus visible utility */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--color-brand-shield);
+  outline-offset: 2px;
+}
+
+/* Cursor pointer utility */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Transitions */
+.transition-colors {
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.transition-all {
+  transition: all var(--transition-normal);
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
